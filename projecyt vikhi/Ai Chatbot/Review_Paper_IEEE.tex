@@ -5,6 +5,2377 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{url}
+\usepackage{cite}
+\usepackage{array}
+
+\title{Comprehensive Review of Existing Chatbot Systems for Career Assistance, Resume Support, and ATS-Aware Guidance}
+
+\author{
+\IEEEauthorblockN{Amruta Anil Bargal, Prof. Dahane G.M.}
+\IEEEauthorblockA{\textit{Department of Data Science Engineering}}
+\IEEEauthorblockA{\textit{Dr. Vithalrao Vikhe Patil College Of Engineering, Ahmednagar, India}}
+\IEEEauthorblockA{amruta442001@email.com, dahane\_it@enggnagar.com}
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper presents a comprehensive review of old and existing chatbot systems relevant to career assistance, resume writing, and applicant tracking system (ATS) support workflows. The paper is strictly literature-based and does not include a new implementation. The review examines the historical evolution of conversational systems from rule-based agents and retrieval chatbots to neural sequence models and transformer-based large language model assistants. In addition, the study reviews supporting technologies around chatbot ecosystems, including multimodal document handling, voice interaction modules, and resume or ATS scoring platforms. For each category, strengths and weaknesses are analyzed across practical dimensions such as language quality, context continuity, reliability, explainability, fairness, privacy, usability, and deployment cost. A comparative synthesis is provided using architecture-level and workflow-level criteria to highlight recurring trade-offs in existing systems. The review also discusses common limitations in prior evaluations and outlines unresolved challenges that repeatedly appear across generations of tools. The purpose of this work is to provide a proper academic review foundation that separates historical understanding from implementation-oriented claims.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Review Paper, Existing Systems, Chatbot History, Rule-Based Chatbot, LLM Chatbot, Resume Support, ATS Optimization
+\end{IEEEkeywords}
+
+\section{Introduction}
+\subsection{Background}
+Conversational software has evolved over multiple decades. Early systems relied on pattern matching and symbolic scripts, while modern systems use probabilistic neural architectures trained on large datasets \cite{weizenbaum1966,wallace2009,adamopoulou2020}. This shift changed chatbot behavior from deterministic but narrow interactions to broad, fluent, and context-aware responses. Alongside this technical evolution, recruitment ecosystems became increasingly software-driven. Applicant tracking systems filter large numbers of applications using structural and keyword heuristics, creating demand for resume and profile optimization tools \cite{black2020}.
+
+\subsection{Why This Review Is Important}
+Many student projects directly begin with coding and model integration. However, an academically strong approach first studies existing work to avoid repeating known mistakes. Without a proper review, implementations often ignore critical issues such as fairness, hallucination risk, context loss, and weak evaluation design. Therefore, this paper focuses only on previous systems and prior literature, without proposing a new architecture or reporting new experimental outcomes.
+
+\subsection{Scope and Objectives}
+The review has four objectives:
+\begin{enumerate}
+    \item To summarize old and current chatbot system categories.
+    \item To compare advantages and disadvantages for career-support tasks.
+    \item To analyze supporting technologies used in real-world tools.
+    \item To identify persistent limitations and open challenges in literature.
+\end{enumerate}
+
+\section{Review Methodology}
+\subsection{Source Scope}
+This review considers studies and reports across five streams:
+\begin{itemize}
+    \item rule-based conversational systems,
+    \item retrieval and intent-classification systems,
+    \item neural sequence generation systems,
+    \item transformer and LLM-based assistants,
+    \item multimodal, voice-enabled, resume, and ATS-support tools.
+\end{itemize}
+
+\subsection{Selection Criteria}
+Sources were prioritized when they included at least one of the following:
+\begin{itemize}
+    \item foundational role in chatbot evolution,
+    \item architectural explanation of system behavior,
+    \item practical findings on usability, reliability, or deployment,
+    \item relevance to career-assistance, resume quality, or hiring pipelines.
+\end{itemize}
+
+\subsection{Comparison Framework}
+All categories are compared using common dimensions:
+\begin{itemize}
+    \item response quality and linguistic fluency,
+    \item multi-turn context retention,
+    \item output controllability and explainability,
+    \item factual reliability and hallucination tendency,
+    \item user accessibility and interaction effort,
+    \item privacy, fairness, and operational feasibility.
+\end{itemize}
+
+\section{Historical Evolution of Existing Chatbot Systems}
+\subsection{Rule-Based Systems}
+Rule-based systems represent the earliest practical chatbot generation. ELIZA and later AIML-style bots responded through handcrafted pattern rules \cite{weizenbaum1966,wallace2009}. Their behavior was predictable because each response originated from explicit templates.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item deterministic output and high explainability,
+    \item very low computational overhead,
+    \item easy debugging in limited domains.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item weak semantic understanding,
+    \item poor handling of paraphrased or ambiguous inputs,
+    \item almost no deep context memory.
+\end{itemize}
+
+For career use, such systems are useful only for static templates and FAQs (for example, ``what to include in education section''). They cannot provide nuanced rewriting based on personal profile context.
+
+\subsection{Retrieval and Intent Systems}
+Retrieval systems classify user intents and map them to curated responses \cite{shawar2007}. They reduce random generation and improve policy control in production environments.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item stable behavior for known query patterns,
+    \item improved moderation and compliance compatibility,
+    \item predictable integration with business workflows.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item dependence on curated intent libraries,
+    \item high maintenance as domain vocabulary evolves,
+    \item limited flexibility for exploratory dialogue.
+\end{itemize}
+
+In resume workflows, retrieval bots can support structured form filling but often fail when users ask comparative or strategic questions requiring synthesis.
+
+\subsection{Neural Sequence Models}
+Sequence-to-sequence neural models enabled freer generation and reduced manual rule engineering \cite{sutskever2014}. They improved surface fluency compared with rigid retrieval responses.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item better lexical variation than static templates,
+    \item support for paraphrasing and rephrasing tasks.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item generic and repetitive outputs in many settings,
+    \item weak factual grounding and domain precision,
+    \item low interpretability in production decisions.
+\end{itemize}
+
+\subsection{Transformer and LLM Systems}
+Transformer architectures improved long-range context modeling \cite{vaswani2017}. LLM-based systems can perform drafting, rewriting, summarization, and style adaptation with high fluency \cite{thoppilan2022}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item strong writing quality and tone control,
+    \item better multi-turn conversational relevance,
+    \item high practical utility for text-intensive tasks.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item hallucination and overconfidence risk,
+    \item sensitivity to prompt design and context limits,
+    \item cost and latency constraints under scale.
+\end{itemize}
+
+\section{Supporting Technologies in Existing Ecosystems}
+\subsection{Multimodal Document Interfaces}
+Multimodal systems combine language models with file processing pipelines for PDFs, images, and other documents \cite{baltrusaitis2019,lu2019}. This is especially relevant for career workflows where users share resume drafts, job descriptions, and certificates.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item stronger grounding in user-provided evidence,
+    \item better practical relevance in document-heavy tasks,
+    \item richer assistant context than text-only chat.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item higher integration complexity,
+    \item quality sensitivity to extraction and OCR errors,
+    \item elevated privacy risk from personal file processing.
+\end{itemize}
+
+\subsection{Voice Interaction}
+Voice-enabled interfaces improve accessibility and convenience through speech-to-text pipelines \cite{w3c2023,pradhan2018}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item lower typing effort,
+    \item useful for fast idea capture.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item reduced accuracy in noisy conditions,
+    \item language/accent variability effects,
+    \item browser-dependent behavior.
+\end{itemize}
+
+\subsection{Resume Builders and ATS Tools}
+Standalone resume tools offer templates, keyword guidance, and export options \cite{resumai2024,resumebuilder2024,atsllm2024}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item consistent formatting and section structure,
+    \item fast generation of submission-ready documents,
+    \item practical ATS keyword support.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item limited deep personalization in many systems,
+    \item weak conversational iteration loops,
+    \item unclear scoring rationale for users.
+\end{itemize}
+
+\section{Comparative Analysis of Existing Systems}
+\subsection{Architecture-Level Comparison}
+\begin{table*}[ht]
+\centering
+\caption{Architecture comparison of existing chatbot generations}
+\begin{tabular}{|p{2.6cm}|p{2.6cm}|p{2.3cm}|p{2.2cm}|p{4.1cm}|}
+\hline
+\textbf{Category} & \textbf{Mechanism} & \textbf{Context Depth} & \textbf{Control} & \textbf{Typical Limitation} \\
+\hline
+Rule-based & Pattern-template mapping & Low & Very high & Cannot generalize beyond authored rules \\
+\hline
+Intent/retrieval & Classification + lookup & Medium & High & Limited adaptability to unseen intents \\
+\hline
+Neural seq2seq & Data-driven generation & Medium & Medium-low & Generic responses and weak grounding \\
+\hline
+LLM/transformer & Pretrained generative model & High & Medium & Hallucination, latency, and cost issues \\
+\hline
+Multimodal chat & LLM + file processing stack & Medium-high & Medium & Pipeline fragility and privacy concerns \\
+\hline
+\end{tabular}
+\end{table*}
+
+\subsection{Workflow-Level Comparison}
+\begin{table*}[ht]
+\centering
+\caption{Existing systems in career-assistance workflows}
+\begin{tabular}{|p{3.0cm}|p{3.5cm}|p{3.8cm}|p{3.6cm}|}
+\hline
+\textbf{System Type} & \textbf{Strong Use Case} & \textbf{Weak Use Case} & \textbf{Observed Effect} \\
+\hline
+Rule-based bot & Fixed resume-format advice & Personalized storytelling & Fast but shallow assistance \\
+\hline
+Retrieval bot & Structured process steps & Open-ended strategy discussion & Stable but rigid interaction \\
+\hline
+LLM assistant & Rewriting and summary drafting & Fact verification under uncertainty & High fluency, variable trust \\
+\hline
+ATS platform & Keyword and format checks & Conversational coaching & Practical output, limited guidance depth \\
+\hline
+Voice interface & Hands-free idea capture & Precision editing tasks & Better accessibility, mixed accuracy \\
+\hline
+\end{tabular}
+\end{table*}
+
+\subsection{Cross-Cutting Trade-Offs}
+Literature repeatedly shows three trade-offs:
+\begin{enumerate}
+    \item \textbf{Control vs Flexibility:} highly controlled systems are less adaptive.
+    \item \textbf{Fluency vs Reliability:} fluent output can still contain incorrect facts.
+    \item \textbf{Capability vs Complexity:} richer modality support increases operational risk.
+\end{enumerate}
+
+\section{Task-Wise Literature Insights}
+\subsection{Summary and Profile Generation}
+Current systems can generate professional summaries quickly, but output quality depends strongly on input completeness. Rule and retrieval methods maintain formal consistency while neural methods improve personalization and tone adaptation. A common limitation is that generated summaries may sound polished but remain generic when objective evidence is missing.
+
+\subsection{Skill Recommendation and Keyword Balancing}
+ATS-focused tools frequently recommend skills based on keyword trends. Traditional systems rely on fixed dictionaries, while LLM-based systems infer semantic relationships. However, literature notes that excessive keyword insertion can reduce readability and authenticity. Effective systems must balance ATS alignment with human reviewer clarity.
+
+\subsection{Document Parsing Quality}
+Many chatbot workflows depend on extracted text from uploaded documents. Errors in parsing, OCR noise, or layout misinterpretation directly reduce recommendation quality. This creates a dependency chain where early extraction quality determines downstream language quality.
+
+\subsection{Multi-Turn Revision Support}
+Long-form resume revision requires persistent context across multiple user iterations. Existing systems often lose conversational continuity due to token limits, session resets, or weak memory orchestration. This leads to repeated user instructions and reduces usability.
+
+\section{Evaluation Practices and Their Gaps}
+\subsection{Common Metrics in Existing Papers}
+Prior work uses mixed metrics such as response relevance, user preference, readability, and keyword coverage. Some studies report ATS score improvements, while others rely on qualitative surveys.
+
+\subsection{Metric Fragmentation Problem}
+Because metrics differ across papers, direct comparison remains difficult. A tool with high linguistic quality scores may still perform poorly in recruiter-facing practical outcomes.
+
+\subsection{Short-Horizon Evaluation}
+Many papers evaluate one-session behavior. Career assistance, however, is iterative and longitudinal. Short studies may miss long-term consistency, user learning effects, and revision stability.
+
+\subsection{Limited Failure Reporting}
+Average performance is often reported, but failure cases such as hallucinated achievements, biased recommendations, or format breakage are underreported in many publications.
+
+\section{Critical Limitations in Existing Systems}
+\subsection{Reliability and Hallucination}
+Large generative models can produce convincing but inaccurate claims \cite{bender2021}. In career contexts, such errors can harm credibility and document trustworthiness.
+
+\subsection{Bias and Fairness}
+Training data and scoring logic can embed social or demographic bias \cite{barocas2016}. This is especially sensitive in hiring-related recommendations.
+
+\subsection{Privacy and Governance}
+Career data contains personal and sensitive details. Cloud APIs and external processors create governance burdens for retention, consent, and compliance \cite{gdpr2016}.
+
+\subsection{Interpretability Deficit}
+Users often receive recommendations without transparent explanation. This limits user agency and makes critical decisions harder to justify.
+
+\subsection{Operational Fragility}
+API limits, provider changes, and dependency failures can reduce system reliability even when model quality is high.
+
+\section{Extended Discussion}
+\subsection{What Older Systems Still Offer}
+Old systems remain relevant where strict control and low cost are primary requirements. In constrained institutional settings, deterministic behavior can be more useful than highly creative outputs.
+
+\subsection{Why Modern Systems Dominate}
+Modern LLM tools reduce writing effort and improve interaction comfort, especially for rewriting, summarization, and formatting assistance. This explains strong user adoption despite known risks.
+
+\subsection{What Research Still Needs}
+Literature still needs stronger benchmarks for real-world outcomes, better failure transparency, and more standardized comparative protocols in career-assistance contexts.
+
+\subsection{Implications for Academic Review Quality}
+A proper review should separate historical analysis from implementation claims. It should focus on reproducible evidence, clear category boundaries, and explicit limitations. This structure helps maintain academic rigor and avoids overstating capability.
+
+\section{Additional Extended Analysis}
+\subsection{Task-Specific Behavior in Existing Systems}
+Existing literature indicates that chatbot quality is highly task-dependent. Systems that perform well in general conversational support may still underperform in structure-sensitive tasks such as resume bullet rewriting. For example, a response that is linguistically fluent may not preserve factual constraints like project duration, job role seniority, or measurable outcomes. In old rule-based systems, this issue appears as limited variation and over-template responses. In modern systems, the issue appears as semantic drift, where meaning changes subtly during rewriting. This difference shows that evolution in fluency does not automatically guarantee evolution in factual faithfulness.
+
+Another task-specific observation concerns comparative career advice. Users frequently ask multi-constraint questions such as selecting between two role targets or rewriting one profile for different industries. Retrieval systems may return valid but disconnected snippets, while LLM systems can produce integrated answers but sometimes overgeneralize. The literature therefore highlights an unresolved requirement: systems must balance synthesis ability with strict preservation of user-provided evidence.
+
+\subsection{Quality of ATS-Oriented Guidance}
+ATS-oriented guidance in existing systems is often measured through keyword coverage and section completeness. However, literature repeatedly warns that high ATS similarity scores do not always correspond to better recruiter readability. Over-optimization can produce unnatural repetition or inflated terminology. This creates a dual-objective challenge: machine readability and human readability must be optimized together.
+
+Several studies further note that ATS recommendations are ecosystem-specific. Different ATS products parse documents differently based on formatting, heading recognition, and tokenization behavior. As a result, a suggestion that improves one parser may not improve another. Existing systems rarely expose this variability to end users. Consequently, users may interpret ATS scores as universal quality indicators even when they are platform-dependent estimates.
+
+\subsection{Session Continuity and Longitudinal Usability}
+Career document development is inherently longitudinal. Users typically iterate over many sessions while changing goals, applying to different roles, and receiving feedback from mentors. Existing chatbot systems still show weak longitudinal continuity. Common issues include session reset, partial memory loss, and inconsistent style persistence. When continuity fails, users must re-state constraints repeatedly, increasing interaction friction.
+
+From a usability standpoint, this repeated context re-entry is more than a minor inconvenience. It increases cognitive burden and can discourage iterative improvement. Literature on human-computer interaction suggests that perceived intelligence depends heavily on continuity, not only on single-response quality. Therefore, systems that preserve user constraints across sessions are often judged more useful even if their raw linguistic quality is similar.
+
+\subsection{Explainability and User Agency}
+Explainability remains one of the most underdeveloped dimensions in current career-assistance chatbots. Many tools provide edits and recommendations without revealing why a specific suggestion is preferred. For academic and professional users, this is problematic because adoption depends on trust and accountability. If users cannot understand rationale, they cannot confidently decide whether to accept or reject generated edits.
+
+Old deterministic systems provided implicit explainability through transparent rules, though with limited flexibility. Modern generative systems provide flexibility but weak traceability. Recent literature therefore encourages ``lightweight explanation layers'' where each recommendation is accompanied by a concise reason, such as relevance to role keywords, clarity improvement, or redundancy reduction. This approach can improve user agency without requiring full model interpretability.
+
+\subsection{Practical Deployment Lessons from Existing Work}
+Across published case studies, practical deployment success depends on non-model factors as much as model factors. Systems fail in production due to API instability, token limits, rate-limiting, browser incompatibility, and poor file preprocessing. These failures may not appear in controlled benchmarks but strongly affect real-world reliability.
+
+Another repeated lesson is governance readiness. Tools that handle personal documents need clear consent flows, retention policies, and user-visible privacy notices. Without this, even technically strong assistants face institutional resistance. Existing literature suggests that deployment maturity should be assessed through operational readiness metrics, not only through response-quality metrics.
+
+\section{Conclusion}
+This paper provided a detailed review of old and existing chatbot systems relevant to career assistance, resume support, and ATS-oriented workflows. The literature demonstrates clear evolution from rule-based tools to advanced LLM-based systems with improved language quality and usability. At the same time, persistent limitations continue across generations, including reliability risks, fairness concerns, privacy challenges, interpretability gaps, and inconsistent evaluation standards. These findings establish a strong review foundation for future academic work while remaining independent of new implementation claims.
+
+\section*{References}
+\begin{thebibliography}{99}
+
+\bibitem{weizenbaum1966}
+J. Weizenbaum, ``ELIZA---a computer program for the study of natural language communication between man and machine,'' \textit{Communications of the ACM}, vol. 9, no. 1, pp. 36--45, 1966.
+
+\bibitem{wallace2009}
+R. S. Wallace, ``The anatomy of A.L.I.C.E.,'' in \textit{Parsing the Turing Test}, Springer, 2009, pp. 181--210.
+
+\bibitem{adamopoulou2020}
+E. Adamopoulou and L. Moussiades, ``Chatbots: History, technology, and applications,'' \textit{Machine Learning with Applications}, vol. 2, p. 100006, 2020.
+
+\bibitem{shawar2007}
+B. A. Shawar and E. Atwell, ``Chatbots: Are they really useful?'' \textit{LDV Forum}, vol. 22, no. 1, pp. 29--49, 2007.
+
+\bibitem{sutskever2014}
+I. Sutskever, O. Vinyals, and Q. V. Le, ``Sequence to sequence learning with neural networks,'' in \textit{Advances in Neural Information Processing Systems}, 2014.
+
+\bibitem{vaswani2017}
+A. Vaswani et al., ``Attention is all you need,'' in \textit{Advances in Neural Information Processing Systems}, vol. 30, 2017.
+
+\bibitem{thoppilan2022}
+R. Thoppilan et al., ``LaMDA: Language models for dialog applications,'' \textit{arXiv preprint arXiv:2201.08239}, 2022.
+
+\bibitem{baltrusaitis2019}
+T. Baltrusaitis, C. Ahuja, and L. P. Morency, ``Multimodal machine learning: A survey and taxonomy,'' \textit{IEEE Transactions on Pattern Analysis and Machine Intelligence}, vol. 41, no. 2, pp. 423--443, 2019.
+
+\bibitem{lu2019}
+J. Lu, D. Batra, D. Parikh, and S. Lee, ``ViLBERT: Pretraining task-agnostic visiolinguistic representations for vision-and-language tasks,'' in \textit{Advances in Neural Information Processing Systems}, vol. 32, 2019.
+
+\bibitem{w3c2023}
+W3C, ``Web Speech API Specification,'' 2023. [Online]. Available: \url{https://w3c.github.io/speech-api/}
+
+\bibitem{pradhan2018}
+A. Pradhan, K. Mehta, and L. Findlater, ``Accessibility came by accident: Use of voice-controlled intelligent personal assistants by people with disabilities,'' in \textit{Proceedings of CHI}, 2018.
+
+\bibitem{black2020}
+J. S. Black and P. van Esch, ``AI-enabled recruiting: What is it and how should a manager use it?'' \textit{Business Horizons}, vol. 63, no. 2, pp. 215--226, 2020.
+
+\bibitem{resumai2024}
+M. Khan et al., ``ResumAI: Revolutionizing automated resume analysis and recommendation with multi-model intelligence,'' \textit{IEEE Conference Publication}, 2024.
+
+\bibitem{atsllm2024}
+A. Khadilkar, ``Optimizing resume authenticity and ATS compatibility with LLM feedback integration,'' \textit{Cal Poly CENG SURP}, 2024.
+
+\bibitem{resumebuilder2024}
+R. Sharma et al., ``AI-powered resume builder: Enhancing job applications with artificial intelligence,'' \textit{IEEE Conference Publication}, 2024.
+
+\bibitem{bender2021}
+E. M. Bender, T. Gebru, A. McMillan-Major, and S. Shmitchell, ``On the dangers of stochastic parrots: Can language models be too big?'' in \textit{FAccT}, 2021.
+
+\bibitem{barocas2016}
+S. Barocas and A. D. Selbst, ``Big data's disparate impact,'' \textit{California Law Review}, vol. 104, no. 3, pp. 671--732, 2016.
+
+\bibitem{gdpr2016}
+European Union, ``General Data Protection Regulation (GDPR),'' Regulation (EU) 2016/679, 2016.
+
+\bibitem{dahane2025}
+G. M. Dahane and A. Kulkarni, ``Analysis of Indian Instrumental Music on the Behavior of the Human Brain: A Literature Review,'' in \textit{Proc. 2025 1st Int. Conf. AIML-Applications for Engineering \& Technology (ICAET)}, 2025.
+
+\end{thebibliography}
+
+\end{document}
+\documentclass[conference]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{cite}
+\usepackage{array}
+
+\title{Comprehensive Review of Existing Chatbot Systems for Career Assistance, Resume Support, and ATS-Aware Guidance}
+
+\author{\IEEEauthorblockN{Amruta Anil Bargal}
+\IEEEauthorblockA{\textit{Department of Data Science Engineering} \\
+\textit{Dr. Vithalrao Vikhe Patil College Of Engineering}\\
+Ahmednagar, India}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper presents a comprehensive review of old and existing chatbot systems relevant to career assistance, resume writing, and applicant tracking system (ATS) support workflows. The paper is strictly literature-based and does not include a new implementation. The review examines the historical evolution of conversational systems from rule-based agents and retrieval chatbots to neural sequence models and transformer-based large language model assistants. In addition, the study reviews supporting technologies around chatbot ecosystems, including multimodal document handling, voice interaction modules, and resume or ATS scoring platforms. For each category, strengths and weaknesses are analyzed across practical dimensions such as language quality, context continuity, reliability, explainability, fairness, privacy, usability, and deployment cost. A comparative synthesis is provided using architecture-level and workflow-level criteria to highlight recurring trade-offs in existing systems. The review also discusses common limitations in prior evaluations and outlines unresolved challenges that repeatedly appear across generations of tools. The purpose of this work is to provide a proper academic review foundation that separates historical understanding from implementation-oriented claims.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Review Paper, Existing Systems, Chatbot History, Rule-Based Chatbot, LLM Chatbot, Resume Support, ATS Optimization
+\end{IEEEkeywords}
+
+\section{Introduction}
+\subsection{Background}
+Conversational software has evolved over multiple decades. Early systems relied on pattern matching and symbolic scripts, while modern systems use probabilistic neural architectures trained on large datasets \cite{weizenbaum1966,wallace2009,adamopoulou2020}. This shift changed chatbot behavior from deterministic but narrow interactions to broad, fluent, and context-aware responses. Alongside this technical evolution, recruitment ecosystems became increasingly software-driven. Applicant tracking systems filter large numbers of applications using structural and keyword heuristics, creating demand for resume and profile optimization tools \cite{black2020}.
+
+\subsection{Why This Review Is Important}
+Many student projects directly begin with coding and model integration. However, an academically strong approach first studies existing work to avoid repeating known mistakes. Without a proper review, implementations often ignore critical issues such as fairness, hallucination risk, context loss, and weak evaluation design. Therefore, this paper focuses only on previous systems and prior literature, without proposing a new architecture or reporting new experimental outcomes.
+
+\subsection{Scope and Objectives}
+The review has four objectives:
+\begin{enumerate}
+    \item To summarize old and current chatbot system categories.
+    \item To compare advantages and disadvantages for career-support tasks.
+    \item To analyze supporting technologies used in real-world tools.
+    \item To identify persistent limitations and open challenges in literature.
+\end{enumerate}
+
+\section{Review Methodology}
+\subsection{Source Scope}
+This review considers studies and reports across five streams:
+\begin{itemize}
+    \item rule-based conversational systems,
+    \item retrieval and intent-classification systems,
+    \item neural sequence generation systems,
+    \item transformer and LLM-based assistants,
+    \item multimodal, voice-enabled, resume, and ATS-support tools.
+\end{itemize}
+
+\subsection{Selection Criteria}
+Sources were prioritized when they included at least one of the following:
+\begin{itemize}
+    \item foundational role in chatbot evolution,
+    \item architectural explanation of system behavior,
+    \item practical findings on usability, reliability, or deployment,
+    \item relevance to career-assistance, resume quality, or hiring pipelines.
+\end{itemize}
+
+\subsection{Comparison Framework}
+All categories are compared using common dimensions:
+\begin{itemize}
+    \item response quality and linguistic fluency,
+    \item multi-turn context retention,
+    \item output controllability and explainability,
+    \item factual reliability and hallucination tendency,
+    \item user accessibility and interaction effort,
+    \item privacy, fairness, and operational feasibility.
+\end{itemize}
+
+\section{Historical Evolution of Existing Chatbot Systems}
+\subsection{Rule-Based Systems}
+Rule-based systems represent the earliest practical chatbot generation. ELIZA and later AIML-style bots responded through handcrafted pattern rules \cite{weizenbaum1966,wallace2009}. Their behavior was predictable because each response originated from explicit templates.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item deterministic output and high explainability,
+    \item very low computational overhead,
+    \item easy debugging in limited domains.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item weak semantic understanding,
+    \item poor handling of paraphrased or ambiguous inputs,
+    \item almost no deep context memory.
+\end{itemize}
+
+For career use, such systems are useful only for static templates and FAQs (for example, ``what to include in education section''). They cannot provide nuanced rewriting based on personal profile context.
+
+\subsection{Retrieval and Intent Systems}
+Retrieval systems classify user intents and map them to curated responses \cite{shawar2007}. They reduce random generation and improve policy control in production environments.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item stable behavior for known query patterns,
+    \item improved moderation and compliance compatibility,
+    \item predictable integration with business workflows.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item dependence on curated intent libraries,
+    \item high maintenance as domain vocabulary evolves,
+    \item limited flexibility for exploratory dialogue.
+\end{itemize}
+
+In resume workflows, retrieval bots can support structured form filling but often fail when users ask comparative or strategic questions requiring synthesis.
+
+\subsection{Neural Sequence Models}
+Sequence-to-sequence neural models enabled freer generation and reduced manual rule engineering \cite{sutskever2014}. They improved surface fluency compared with rigid retrieval responses.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item better lexical variation than static templates,
+    \item support for paraphrasing and rephrasing tasks.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item generic and repetitive outputs in many settings,
+    \item weak factual grounding and domain precision,
+    \item low interpretability in production decisions.
+\end{itemize}
+
+\subsection{Transformer and LLM Systems}
+Transformer architectures improved long-range context modeling \cite{vaswani2017}. LLM-based systems can perform drafting, rewriting, summarization, and style adaptation with high fluency \cite{thoppilan2022}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item strong writing quality and tone control,
+    \item better multi-turn conversational relevance,
+    \item high practical utility for text-intensive tasks.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item hallucination and overconfidence risk,
+    \item sensitivity to prompt design and context limits,
+    \item cost and latency constraints under scale.
+\end{itemize}
+
+\section{Supporting Technologies in Existing Ecosystems}
+\subsection{Multimodal Document Interfaces}
+Multimodal systems combine language models with file processing pipelines for PDFs, images, and other documents \cite{baltrusaitis2019,lu2019}. This is especially relevant for career workflows where users share resume drafts, job descriptions, and certificates.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item stronger grounding in user-provided evidence,
+    \item better practical relevance in document-heavy tasks,
+    \item richer assistant context than text-only chat.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item higher integration complexity,
+    \item quality sensitivity to extraction and OCR errors,
+    \item elevated privacy risk from personal file processing.
+\end{itemize}
+
+\subsection{Voice Interaction}
+Voice-enabled interfaces improve accessibility and convenience through speech-to-text pipelines \cite{w3c2023,pradhan2018}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item lower typing effort,
+    \item useful for fast idea capture.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item reduced accuracy in noisy conditions,
+    \item language/accent variability effects,
+    \item browser-dependent behavior.
+\end{itemize}
+
+\subsection{Resume Builders and ATS Tools}
+Standalone resume tools offer templates, keyword guidance, and export options \cite{resumai2024,resumebuilder2024,atsllm2024}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item consistent formatting and section structure,
+    \item fast generation of submission-ready documents,
+    \item practical ATS keyword support.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item limited deep personalization in many systems,
+    \item weak conversational iteration loops,
+    \item unclear scoring rationale for users.
+\end{itemize}
+
+\section{Comparative Analysis of Existing Systems}
+\subsection{Architecture-Level Comparison}
+\begin{table*}[ht]
+\centering
+\caption{Architecture comparison of existing chatbot generations}
+\begin{tabular}{|p{2.6cm}|p{2.6cm}|p{2.3cm}|p{2.2cm}|p{4.1cm}|}
+\hline
+\textbf{Category} & \textbf{Mechanism} & \textbf{Context Depth} & \textbf{Control} & \textbf{Typical Limitation} \\
+\hline
+Rule-based & Pattern-template mapping & Low & Very high & Cannot generalize beyond authored rules \\
+\hline
+Intent/retrieval & Classification + lookup & Medium & High & Limited adaptability to unseen intents \\
+\hline
+Neural seq2seq & Data-driven generation & Medium & Medium-low & Generic responses and weak grounding \\
+\hline
+LLM/transformer & Pretrained generative model & High & Medium & Hallucination, latency, and cost issues \\
+\hline
+Multimodal chat & LLM + file processing stack & Medium-high & Medium & Pipeline fragility and privacy concerns \\
+\hline
+\end{tabular}
+\end{table*}
+
+\subsection{Workflow-Level Comparison}
+\begin{table*}[ht]
+\centering
+\caption{Existing systems in career-assistance workflows}
+\begin{tabular}{|p{3.0cm}|p{3.5cm}|p{3.8cm}|p{3.6cm}|}
+\hline
+\textbf{System Type} & \textbf{Strong Use Case} & \textbf{Weak Use Case} & \textbf{Observed Effect} \\
+\hline
+Rule-based bot & Fixed resume-format advice & Personalized storytelling & Fast but shallow assistance \\
+\hline
+Retrieval bot & Structured process steps & Open-ended strategy discussion & Stable but rigid interaction \\
+\hline
+LLM assistant & Rewriting and summary drafting & Fact verification under uncertainty & High fluency, variable trust \\
+\hline
+ATS platform & Keyword and format checks & Conversational coaching & Practical output, limited guidance depth \\
+\hline
+Voice interface & Hands-free idea capture & Precision editing tasks & Better accessibility, mixed accuracy \\
+\hline
+\end{tabular}
+\end{table*}
+
+\subsection{Cross-Cutting Trade-Offs}
+Literature repeatedly shows three trade-offs:
+\begin{enumerate}
+    \item \textbf{Control vs Flexibility:} highly controlled systems are less adaptive.
+    \item \textbf{Fluency vs Reliability:} fluent output can still contain incorrect facts.
+    \item \textbf{Capability vs Complexity:} richer modality support increases operational risk.
+\end{enumerate}
+
+\section{Task-Wise Literature Insights}
+\subsection{Summary and Profile Generation}
+Current systems can generate professional summaries quickly, but output quality depends strongly on input completeness. Rule and retrieval methods maintain formal consistency while neural methods improve personalization and tone adaptation. A common limitation is that generated summaries may sound polished but remain generic when objective evidence is missing.
+
+\subsection{Skill Recommendation and Keyword Balancing}
+ATS-focused tools frequently recommend skills based on keyword trends. Traditional systems rely on fixed dictionaries, while LLM-based systems infer semantic relationships. However, literature notes that excessive keyword insertion can reduce readability and authenticity. Effective systems must balance ATS alignment with human reviewer clarity.
+
+\subsection{Document Parsing Quality}
+Many chatbot workflows depend on extracted text from uploaded documents. Errors in parsing, OCR noise, or layout misinterpretation directly reduce recommendation quality. This creates a dependency chain where early extraction quality determines downstream language quality.
+
+\subsection{Multi-Turn Revision Support}
+Long-form resume revision requires persistent context across multiple user iterations. Existing systems often lose conversational continuity due to token limits, session resets, or weak memory orchestration. This leads to repeated user instructions and reduces usability.
+
+\section{Evaluation Practices and Their Gaps}
+\subsection{Common Metrics in Existing Papers}
+Prior work uses mixed metrics such as response relevance, user preference, readability, and keyword coverage. Some studies report ATS score improvements, while others rely on qualitative surveys.
+
+\subsection{Metric Fragmentation Problem}
+Because metrics differ across papers, direct comparison remains difficult. A tool with high linguistic quality scores may still perform poorly in recruiter-facing practical outcomes.
+
+\subsection{Short-Horizon Evaluation}
+Many papers evaluate one-session behavior. Career assistance, however, is iterative and longitudinal. Short studies may miss long-term consistency, user learning effects, and revision stability.
+
+\subsection{Limited Failure Reporting}
+Average performance is often reported, but failure cases such as hallucinated achievements, biased recommendations, or format breakage are underreported in many publications.
+
+\section{Critical Limitations in Existing Systems}
+\subsection{Reliability and Hallucination}
+Large generative models can produce convincing but inaccurate claims \cite{bender2021}. In career contexts, such errors can harm credibility and document trustworthiness.
+
+\subsection{Bias and Fairness}
+Training data and scoring logic can embed social or demographic bias \cite{barocas2016}. This is especially sensitive in hiring-related recommendations.
+
+\subsection{Privacy and Governance}
+Career data contains personal and sensitive details. Cloud APIs and external processors create governance burdens for retention, consent, and compliance \cite{gdpr2016}.
+
+\subsection{Interpretability Deficit}
+Users often receive recommendations without transparent explanation. This limits user agency and makes critical decisions harder to justify.
+
+\subsection{Operational Fragility}
+API limits, provider changes, and dependency failures can reduce system reliability even when model quality is high.
+
+\section{Extended Discussion}
+\subsection{What Older Systems Still Offer}
+Old systems remain relevant where strict control and low cost are primary requirements. In constrained institutional settings, deterministic behavior can be more useful than highly creative outputs.
+
+\subsection{Why Modern Systems Dominate}
+Modern LLM tools reduce writing effort and improve interaction comfort, especially for rewriting, summarization, and formatting assistance. This explains strong user adoption despite known risks.
+
+\subsection{What Research Still Needs}
+Literature still needs stronger benchmarks for real-world outcomes, better failure transparency, and more standardized comparative protocols in career-assistance contexts.
+
+\subsection{Implications for Academic Review Quality}
+A proper review should separate historical analysis from implementation claims. It should focus on reproducible evidence, clear category boundaries, and explicit limitations. This structure helps maintain academic rigor and avoids overstating capability.
+
+\section{Additional Extended Analysis}
+\subsection{Task-Specific Behavior in Existing Systems}
+Existing literature indicates that chatbot quality is highly task-dependent. Systems that perform well in general conversational support may still underperform in structure-sensitive tasks such as resume bullet rewriting. For example, a response that is linguistically fluent may not preserve factual constraints like project duration, job role seniority, or measurable outcomes. In old rule-based systems, this issue appears as limited variation and over-template responses. In modern systems, the issue appears as semantic drift, where meaning changes subtly during rewriting. This difference shows that evolution in fluency does not automatically guarantee evolution in factual faithfulness.
+
+Another task-specific observation concerns comparative career advice. Users frequently ask multi-constraint questions such as selecting between two role targets or rewriting one profile for different industries. Retrieval systems may return valid but disconnected snippets, while LLM systems can produce integrated answers but sometimes overgeneralize. The literature therefore highlights an unresolved requirement: systems must balance synthesis ability with strict preservation of user-provided evidence.
+
+\subsection{Quality of ATS-Oriented Guidance}
+ATS-oriented guidance in existing systems is often measured through keyword coverage and section completeness. However, literature repeatedly warns that high ATS similarity scores do not always correspond to better recruiter readability. Over-optimization can produce unnatural repetition or inflated terminology. This creates a dual-objective challenge: machine readability and human readability must be optimized together.
+
+Several studies further note that ATS recommendations are ecosystem-specific. Different ATS products parse documents differently based on formatting, heading recognition, and tokenization behavior. As a result, a suggestion that improves one parser may not improve another. Existing systems rarely expose this variability to end users. Consequently, users may interpret ATS scores as universal quality indicators even when they are platform-dependent estimates.
+
+\subsection{Session Continuity and Longitudinal Usability}
+Career document development is inherently longitudinal. Users typically iterate over many sessions while changing goals, applying to different roles, and receiving feedback from mentors. Existing chatbot systems still show weak longitudinal continuity. Common issues include session reset, partial memory loss, and inconsistent style persistence. When continuity fails, users must re-state constraints repeatedly, increasing interaction friction.
+
+From a usability standpoint, this repeated context re-entry is more than a minor inconvenience. It increases cognitive burden and can discourage iterative improvement. Literature on human-computer interaction suggests that perceived intelligence depends heavily on continuity, not only on single-response quality. Therefore, systems that preserve user constraints across sessions are often judged more useful even if their raw linguistic quality is similar.
+
+\subsection{Explainability and User Agency}
+Explainability remains one of the most underdeveloped dimensions in current career-assistance chatbots. Many tools provide edits and recommendations without revealing why a specific suggestion is preferred. For academic and professional users, this is problematic because adoption depends on trust and accountability. If users cannot understand rationale, they cannot confidently decide whether to accept or reject generated edits.
+
+Old deterministic systems provided implicit explainability through transparent rules, though with limited flexibility. Modern generative systems provide flexibility but weak traceability. Recent literature therefore encourages ``lightweight explanation layers'' where each recommendation is accompanied by a concise reason, such as relevance to role keywords, clarity improvement, or redundancy reduction. This approach can improve user agency without requiring full model interpretability.
+
+\subsection{Practical Deployment Lessons from Existing Work}
+Across published case studies, practical deployment success depends on non-model factors as much as model factors. Systems fail in production due to API instability, token limits, rate-limiting, browser incompatibility, and poor file preprocessing. These failures may not appear in controlled benchmarks but strongly affect real-world reliability.
+
+Another repeated lesson is governance readiness. Tools that handle personal documents need clear consent flows, retention policies, and user-visible privacy notices. Without this, even technically strong assistants face institutional resistance. Existing literature suggests that deployment maturity should be assessed through operational readiness metrics, not only through response-quality metrics.
+
+\section{Supplementary Comparative Notes}
+\subsection{Stability Under Real User Variability}
+In controlled demonstrations, most chatbot systems appear stable because prompts are short, clean, and goal-specific. Real users, however, often provide incomplete, mixed-language, or contradictory instructions. Literature shows that system stability under such noisy inputs is a better indicator of practical quality than performance under ideal prompts. Rule-based systems degrade by failing to match intent patterns, while generative systems degrade by inferring assumptions that may be incorrect. Retrieval systems may return loosely related templates that look relevant but do not resolve user intent fully.
+
+For career workflows, variability is especially high because users differ in domain exposure, writing confidence, and familiarity with recruitment language. A fresher may ask broad exploratory questions, while experienced candidates ask precision-editing questions with strict constraints. Existing systems rarely adapt interaction strategy explicitly to user maturity level. This often leads to either over-simplified responses for experienced users or overly technical responses for beginners.
+
+\subsection{Consistency Across Multiple Output Sections}
+Resume support is not a single-output task. Users need consistency across summary, experience bullets, skills, projects, and sometimes cover letters. A frequent limitation in literature is section inconsistency. A system may generate strong bullet points in one section but conflicting tone or terminology in another section. This inconsistency is harder to detect in one-step evaluations and becomes visible only during full-document review.
+
+Older template systems enforce consistency through rigid structure, but they lose adaptability. LLM systems provide adaptability but can drift in tense, verbosity, and domain emphasis across sections. Several studies recommend intermediate validation layers that check style, tense, and skill coherence before presenting final output.
+
+\subsection{Role of Human Oversight}
+Existing work repeatedly emphasizes that chatbot outputs in career settings should be treated as draft suggestions, not final truth. Human oversight is essential for fact verification, ethical alignment, and context-specific judgment. This does not reduce chatbot utility; instead, it reframes utility as collaborative assistance. Systems that encourage review and provide editable outputs are generally more acceptable than systems that present responses as authoritative decisions.
+
+From an educational perspective, human-in-the-loop usage also improves skill development. Users learn better resume practices when systems explain edits and invite revision rather than simply replacing user text. This observation aligns with broader findings in AI-assisted writing literature where transparent iterative workflows outperform opaque one-shot generation.
+
+\subsection{Comparative Robustness of Old vs Modern Systems}
+An interesting review insight is that ``better'' depends on the evaluation axis. If the axis is linguistic richness, modern systems clearly dominate. If the axis is strict policy consistency and deterministic behavior, older systems still perform strongly. Therefore, literature does not support a one-dimensional replacement narrative. Instead, it supports contextual selection: choose architecture based on domain risk, compliance needs, user diversity, and operational constraints.
+
+This insight is useful for academic review framing. A proper conclusion is not that old systems are obsolete, but that they are insufficient alone for complex tasks and still useful as guardrails in hybrid workflows. Likewise, modern systems are powerful but require stronger governance and validation scaffolding.
+
+\subsection{Implications for Future Review Studies}
+Future review papers should compare systems using layered criteria: model quality, system integration quality, and deployment maturity quality. Most existing studies focus heavily on model-level metrics and under-report integration or governance behavior. A more balanced review methodology can improve reproducibility and cross-study comparability.
+
+In addition, future surveys should report negative findings with equal clarity. Failure analysis is not a weakness of research reporting; it is a strength that helps the field avoid repeated mistakes. In career-assistance systems, such transparency is especially important because recommendations can directly influence user opportunities.
+
+\section{Conclusion}
+This paper provided a detailed review of old and existing chatbot systems relevant to career assistance, resume support, and ATS-oriented workflows. The literature demonstrates clear evolution from rule-based tools to advanced LLM-based systems with improved language quality and usability. At the same time, persistent limitations continue across generations, including reliability risks, fairness concerns, privacy challenges, interpretability gaps, and inconsistent evaluation standards. These findings establish a strong review foundation for future academic work while remaining independent of new implementation claims.
+
+\section*{References}
+\begin{thebibliography}{99}
+
+\bibitem{weizenbaum1966}
+J. Weizenbaum, ``ELIZA---a computer program for the study of natural language communication between man and machine,'' \textit{Communications of the ACM}, vol. 9, no. 1, pp. 36--45, 1966.
+
+\bibitem{wallace2009}
+R. S. Wallace, ``The anatomy of A.L.I.C.E.,'' in \textit{Parsing the Turing Test}, Springer, 2009, pp. 181--210.
+
+\bibitem{adamopoulou2020}
+E. Adamopoulou and L. Moussiades, ``Chatbots: History, technology, and applications,'' \textit{Machine Learning with Applications}, vol. 2, p. 100006, 2020.
+
+\bibitem{shawar2007}
+B. A. Shawar and E. Atwell, ``Chatbots: Are they really useful?'' \textit{LDV Forum}, vol. 22, no. 1, pp. 29--49, 2007.
+
+\bibitem{sutskever2014}
+I. Sutskever, O. Vinyals, and Q. V. Le, ``Sequence to sequence learning with neural networks,'' in \textit{Advances in Neural Information Processing Systems}, 2014.
+
+\bibitem{vaswani2017}
+A. Vaswani et al., ``Attention is all you need,'' in \textit{Advances in Neural Information Processing Systems}, vol. 30, 2017.
+
+\bibitem{thoppilan2022}
+R. Thoppilan et al., ``LaMDA: Language models for dialog applications,'' \textit{arXiv preprint arXiv:2201.08239}, 2022.
+
+\bibitem{baltrusaitis2019}
+T. Baltrusaitis, C. Ahuja, and L. P. Morency, ``Multimodal machine learning: A survey and taxonomy,'' \textit{IEEE Transactions on Pattern Analysis and Machine Intelligence}, vol. 41, no. 2, pp. 423--443, 2019.
+
+\bibitem{lu2019}
+J. Lu, D. Batra, D. Parikh, and S. Lee, ``ViLBERT: Pretraining task-agnostic visiolinguistic representations for vision-and-language tasks,'' in \textit{Advances in Neural Information Processing Systems}, vol. 32, 2019.
+
+\bibitem{w3c2023}
+W3C, ``Web Speech API Specification,'' 2023. [Online]. Available: \url{https://w3c.github.io/speech-api/}
+
+\bibitem{pradhan2018}
+A. Pradhan, K. Mehta, and L. Findlater, ``Accessibility came by accident: Use of voice-controlled intelligent personal assistants by people with disabilities,'' in \textit{Proceedings of CHI}, 2018.
+
+\bibitem{black2020}
+J. S. Black and P. van Esch, ``AI-enabled recruiting: What is it and how should a manager use it?'' \textit{Business Horizons}, vol. 63, no. 2, pp. 215--226, 2020.
+
+\bibitem{resumai2024}
+M. Khan et al., ``ResumAI: Revolutionizing automated resume analysis and recommendation with multi-model intelligence,'' \textit{IEEE Conference Publication}, 2024.
+
+\bibitem{atsllm2024}
+A. Khadilkar, ``Optimizing resume authenticity and ATS compatibility with LLM feedback integration,'' \textit{Cal Poly CENG SURP}, 2024.
+
+\bibitem{resumebuilder2024}
+R. Sharma et al., ``AI-powered resume builder: Enhancing job applications with artificial intelligence,'' \textit{IEEE Conference Publication}, 2024.
+
+\bibitem{bender2021}
+E. M. Bender, T. Gebru, A. McMillan-Major, and S. Shmitchell, ``On the dangers of stochastic parrots: Can language models be too big?'' in \textit{FAccT}, 2021.
+
+\bibitem{barocas2016}
+S. Barocas and A. D. Selbst, ``Big data's disparate impact,'' \textit{California Law Review}, vol. 104, no. 3, pp. 671--732, 2016.
+
+\bibitem{gdpr2016}
+European Union, ``General Data Protection Regulation (GDPR),'' Regulation (EU) 2016/679, 2016.
+
+\bibitem{dahane2025}
+G. M. Dahane and A. Kulkarni, ``Analysis of Indian Instrumental Music on the Behavior of the Human Brain: A Literature Review,'' in \textit{Proc. 2025 1st Int. Conf. AIML-Applications for Engineering \& Technology (ICAET)}, 2025.
+
+\end{thebibliography}
+
+\end{document}
+\documentclass[conference]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{cite}
+\usepackage{array}
+
+\title{Extensive Review of Existing Chatbot Systems for Career Assistance and Resume Support}
+
+\author{\IEEEauthorblockN{Amruta Anil Bargal}
+\IEEEauthorblockA{\textit{Department of Data Science Engineering} \\
+\textit{Dr. Vithalrao Vikhe Patil College Of Engineering}\\
+Ahmednagar, India}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper provides an extensive literature review of old and existing chatbot systems used in career assistance, resume guidance, and recruitment-support workflows. The work is strictly review-oriented and does not include any new implementation. It tracks the progression from rule-based systems to retrieval pipelines, neural sequence models, and modern large language model chatbots. Supporting technologies such as multimodal document interfaces, voice interaction modules, and ATS-oriented resume tools are also reviewed. For each category, strengths and weaknesses are analyzed through language quality, context retention, reliability, fairness, privacy, accessibility, and deployment complexity. The paper consolidates reported findings from prior work and highlights unresolved limitations that continue across generations of systems.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Review Paper, Existing Systems, Chatbot History, LLM Chatbots, Resume Assistance, ATS Systems
+\end{IEEEkeywords}
+
+\section{Introduction}
+\subsection{Background}
+Chatbots have evolved from deterministic script-driven systems to high-capacity neural language models \cite{weizenbaum1966,wallace2009,adamopoulou2020}. In parallel, recruitment workflows increasingly depend on digital screening and ATS pipelines \cite{black2020}. This has created demand for tools that support users in resume writing, content refinement, and application preparation.
+
+\subsection{Purpose}
+This paper is intentionally limited to review and analysis of existing systems. It does not present a new architecture, does not report implementation results, and does not claim experimental performance improvements.
+
+\subsection{Objectives}
+\begin{enumerate}
+    \item Review historical and current chatbot categories.
+    \item Compare advantages and disadvantages of each category.
+    \item Examine supporting technologies used around chatbot ecosystems.
+    \item Summarize common limitations and unresolved issues.
+\end{enumerate}
+
+\section{Methodology of Review}
+\subsection{Coverage}
+The survey covers:
+\begin{itemize}
+    \item rule-based conversational systems,
+    \item retrieval and intent-classification systems,
+    \item neural and transformer-based generative systems,
+    \item multimodal and voice-enabled interfaces,
+    \item resume and ATS support tools.
+\end{itemize}
+
+\subsection{Selection Criteria}
+Sources were considered when they offered:
+\begin{itemize}
+    \item architectural or behavioral insights,
+    \item practical findings on usability or reliability,
+    \item relevance to career assistance and hiring support.
+\end{itemize}
+
+\section{Historical Review of Existing Systems}
+\subsection{Rule-Based Systems}
+Early systems such as ELIZA used keyword and pattern matching \cite{weizenbaum1966}. Later AIML-based bots increased template depth \cite{wallace2009}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item predictable and explainable outputs,
+    \item low operating cost,
+    \item simple maintenance for narrow tasks.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item weak semantic understanding,
+    \item poor handling of unexpected queries,
+    \item limited contextual continuity.
+\end{itemize}
+
+\subsection{Retrieval and Intent Systems}
+These systems classify intent and map responses from curated repositories \cite{shawar2007}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item high consistency for known scenarios,
+    \item improved governance and control,
+    \item suitable for policy-sensitive workflows.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item high dependence on curated intents,
+    \item reduced flexibility in exploratory conversations,
+    \item costly updates when domain changes.
+\end{itemize}
+
+\subsection{Neural Sequence Models}
+Seq2seq models allowed freer text generation but introduced response instability \cite{sutskever2014}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item better fluency than rigid templates,
+    \item adaptive wording across similar requests.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item generic responses in many cases,
+    \item weak factual grounding,
+    \item difficulty in controlling outputs.
+\end{itemize}
+
+\subsection{Transformer and LLM Systems}
+Transformer models improved context handling and generation quality \cite{vaswani2017,thoppilan2022}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item strong rewriting and drafting capability,
+    \item better contextual response quality,
+    \item practical support for resume language refinement.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item hallucination and confidence risks,
+    \item cost and latency concerns at scale,
+    \item output variability with prompt phrasing.
+\end{itemize}
+
+\section{Supporting Technologies in Existing Tools}
+\subsection{Multimodal Interfaces}
+Multimodal systems combine text with document or visual signals \cite{baltrusaitis2019,lu2019}. This improves practical support for job descriptions, certificates, and profile documents.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item better grounding through uploaded evidence,
+    \item stronger relevance in real workflows.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item complex integration pipelines,
+    \item privacy risks in personal document processing.
+\end{itemize}
+
+\subsection{Voice Interfaces}
+Voice input improves accessibility and speed in idea capture \cite{w3c2023,pradhan2018}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item easier interaction for some users,
+    \item faster first-draft input.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item recognition quality varies with accent/noise,
+    \item browser-specific limitations.
+\end{itemize}
+
+\subsection{Resume and ATS Tools}
+Standalone tools assist formatting, keyword matching, and export \cite{resumai2024,resumebuilder2024,atsllm2024}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item structured output and ATS compatibility guidance,
+    \item practical templates for job submissions.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item limited conversational coaching depth,
+    \item weak transparency in scoring logic.
+\end{itemize}
+
+\section{Comparative Synthesis}
+\begin{table*}[ht]
+\centering
+\caption{Comparison across existing chatbot system categories}
+\begin{tabular}{|p{2.7cm}|p{2.7cm}|p{2.3cm}|p{2.4cm}|p{3.9cm}|}
+\hline
+\textbf{Category} & \textbf{Mechanism} & \textbf{Context Quality} & \textbf{Control Level} & \textbf{Typical Limitation} \\
+\hline
+Rule-based & Pattern templates & Low & Very high & Fails outside predefined rules \\
+\hline
+Intent/retrieval & Classification plus lookup & Medium & High & Limited adaptability \\
+\hline
+Seq2seq & Neural generation & Medium & Medium-low & Generic and unstable outputs \\
+\hline
+LLM/Transformer & Large pretrained generation & High & Medium & Hallucination and cost \\
+\hline
+Multimodal assistants & LLM plus file/media processing & Medium-high & Medium & Complex and privacy-sensitive pipelines \\
+\hline
+\end{tabular}
+\end{table*}
+
+\section{Evaluation Practices in Prior Work}
+Existing studies use mixed metrics such as relevance, user satisfaction, and task success. In recruitment-oriented tools, some papers report ATS keyword coverage or score shifts. However, standardized benchmark frameworks are still limited, and cross-paper comparison remains difficult.
+
+\section{Common Limitations Across Existing Systems}
+\subsection{Reliability}
+Fluent responses do not always guarantee factual correctness \cite{bender2021}. This is critical in resume assistance where inaccurate claims can affect credibility.
+
+\subsection{Bias and Fairness}
+Training data and scoring heuristics can encode social bias, impacting recommendations \cite{barocas2016}.
+
+\subsection{Privacy}
+Career data contains sensitive information. Cloud processing introduces governance challenges \cite{gdpr2016}.
+
+\subsection{Scalability}
+API costs, latency, and rate limits reduce feasibility in sustained high-volume usage.
+
+\section{Extended Discussion for Literature Insights}
+\subsection{Why Old Systems Still Matter}
+Old systems remain valuable when strict control and low cost are required. For static FAQ and policy-driven assistance, deterministic behavior is often preferred over generative flexibility.
+
+\subsection{Why Modern Systems Grow Rapidly}
+Modern systems dramatically reduce writing effort. Users gain faster rewriting, tone adaptation, and summarization, which explains rapid adoption despite known risks.
+
+\subsection{Where Existing Research Is Still Weak}
+Literature is still weak in long-term real-world evaluation. Many papers evaluate output quality in isolation but do not measure end-to-end user outcomes over multiple sessions.
+
+\subsection{Need for Better Comparative Benchmarks}
+Future review efforts should emphasize comparable task definitions, transparent metrics, and standardized datasets for career-assistance scenarios.
+
+\section{Detailed Literature Observations by Task Type}
+\subsection{Resume Summary Generation}
+Existing systems are frequently evaluated on their ability to generate short professional summaries from sparse user input. Rule-based systems generally produce templated outputs with stable grammar but low personalization. Retrieval systems improve contextual relevance only when similar training examples exist in the repository. LLM-based systems produce fluent summaries with better role-specific tone, but several studies report overgeneralized claims when user context is incomplete. This suggests that linguistic quality and factual specificity are still not perfectly aligned in current systems.
+
+\subsection{Skill Extraction and Keyword Optimization}
+Many tools focus on extracting or recommending skills for ATS visibility. Traditional systems use keyword dictionaries and frequency heuristics, which are transparent but rigid. Modern systems infer semantic skill clusters and suggest adjacent terms, improving recall but sometimes reducing precision. A recurrent limitation in literature is that keyword optimization can overfit to machine screening while weakening human readability. Several papers therefore recommend balancing ATS keywords with narrative clarity in section-level writing.
+
+\subsection{Document Parsing and Evidence Utilization}
+Document-aware chat systems typically parse resume drafts, job descriptions, and certificates. Existing methods vary by parser quality and preprocessing strategy. Systems based on direct text extraction often fail on scanned PDFs or layout-heavy documents, while OCR-based pipelines introduce additional noise. Literature consistently notes that downstream conversational quality depends heavily on preprocessing accuracy. If extraction is noisy, even strong language models generate suboptimal recommendations.
+
+\subsection{Interactive Revision Workflows}
+Multi-turn revision is a key requirement in real career support. Studies show that systems with better session continuity provide stronger user satisfaction because they retain previous edits and constraints. However, many existing systems still lose context when sessions reset, files are re-uploaded, or token windows are exceeded. This creates repeated user effort and can reduce trust in long-form interactions.
+
+\section{Threats to Validity in Existing Literature}
+\subsection{Dataset and Domain Bias}
+Many published evaluations use narrow datasets, synthetic prompts, or small user groups. As a result, reported gains may not generalize across education levels, industries, or linguistic backgrounds. This is a major threat when transferring results into real recruitment scenarios.
+
+\subsection{Metric Inconsistency}
+Different papers use different success metrics (text quality, user preference, ATS score, or task completion), making direct comparison difficult. Without unified benchmarks, apparent superiority of one approach may reflect metric choice rather than real system advantage.
+
+\subsection{Short Evaluation Horizon}
+A large portion of studies assess single-session output quality rather than longitudinal user outcomes. Career support is inherently iterative; users revise documents over weeks or months. Short-horizon studies therefore capture only partial system behavior.
+
+\subsection{Limited Reporting on Failure Cases}
+Many papers focus on average performance and under-report failure patterns such as hallucinated achievements, biased suggestions, or malformed formatting outputs. This reporting gap reduces practical trustworthiness of published claims.
+
+\section{Expanded Limitations in Current Systems}
+\subsection{Over-Optimization for ATS Signals}
+Several systems optimize aggressively for keyword density, sometimes at the expense of readability and narrative authenticity. Recruiters may detect this pattern as artificial phrasing, reducing practical effectiveness despite improved ATS scores.
+
+\subsection{Language and Regional Constraints}
+Existing tools are often tuned for English-first datasets and common Western resume formats. Performance can decline for regional formats, bilingual resumes, and localized job-market expectations.
+
+\subsection{Explainability Deficit}
+Users are frequently shown suggestions without clear rationale. In high-stakes contexts such as job applications, lack of explanation reduces confidence and makes it hard for users to decide which recommendations to accept.
+
+\subsection{Integration Fragmentation}
+Many systems deliver only one slice of workflow (chat, scoring, formatting, or export). Users then switch between tools, creating context breaks and manual transfer effort. Literature repeatedly identifies this as a core usability bottleneck.
+
+\subsection{Operational Fragility}
+Production behavior can be unstable due to API changes, provider outages, token limits, or browser restrictions. Even when model quality is high, these operational factors reduce real-world reliability.
+
+\section{Conclusion}
+This review examined old and existing chatbot ecosystems relevant to career and resume assistance without introducing any new implementation. The literature shows substantial progress in language quality and interaction depth from rule-based systems to LLM-based assistants. At the same time, recurring issues remain in reliability, fairness, privacy, interpretability, and benchmark standardization. These findings provide a strong academic base for further research.
+
+\section*{References}
+\begin{thebibliography}{99}
+
+\bibitem{weizenbaum1966}
+J. Weizenbaum, ``ELIZA---a computer program for the study of natural language communication between man and machine,'' \textit{Communications of the ACM}, vol. 9, no. 1, pp. 36--45, 1966.
+
+\bibitem{wallace2009}
+R. S. Wallace, ``The anatomy of A.L.I.C.E.,'' in \textit{Parsing the Turing Test}, Springer, 2009, pp. 181--210.
+
+\bibitem{adamopoulou2020}
+E. Adamopoulou and L. Moussiades, ``Chatbots: History, technology, and applications,'' \textit{Machine Learning with Applications}, vol. 2, p. 100006, 2020.
+
+\bibitem{shawar2007}
+B. A. Shawar and E. Atwell, ``Chatbots: Are they really useful?'' \textit{LDV Forum}, vol. 22, no. 1, pp. 29--49, 2007.
+
+\bibitem{sutskever2014}
+I. Sutskever, O. Vinyals, and Q. V. Le, ``Sequence to sequence learning with neural networks,'' in \textit{Advances in Neural Information Processing Systems}, 2014.
+
+\bibitem{vaswani2017}
+A. Vaswani et al., ``Attention is all you need,'' in \textit{Advances in Neural Information Processing Systems}, vol. 30, 2017.
+
+\bibitem{thoppilan2022}
+R. Thoppilan et al., ``LaMDA: Language models for dialog applications,'' \textit{arXiv preprint arXiv:2201.08239}, 2022.
+
+\bibitem{baltrusaitis2019}
+T. Baltrusaitis, C. Ahuja, and L. P. Morency, ``Multimodal machine learning: A survey and taxonomy,'' \textit{IEEE Transactions on Pattern Analysis and Machine Intelligence}, vol. 41, no. 2, pp. 423--443, 2019.
+
+\bibitem{lu2019}
+J. Lu, D. Batra, D. Parikh, and S. Lee, ``ViLBERT: Pretraining task-agnostic visiolinguistic representations for vision-and-language tasks,'' in \textit{Advances in Neural Information Processing Systems}, vol. 32, 2019.
+
+\bibitem{w3c2023}
+W3C, ``Web Speech API Specification,'' 2023. [Online]. Available: \url{https://w3c.github.io/speech-api/}
+
+\bibitem{pradhan2018}
+A. Pradhan, K. Mehta, and L. Findlater, ``Accessibility came by accident: Use of voice-controlled intelligent personal assistants by people with disabilities,'' in \textit{Proceedings of CHI}, 2018.
+
+\bibitem{black2020}
+J. S. Black and P. van Esch, ``AI-enabled recruiting: What is it and how should a manager use it?'' \textit{Business Horizons}, vol. 63, no. 2, pp. 215--226, 2020.
+
+\bibitem{resumai2024}
+M. Khan et al., ``ResumAI: Revolutionizing automated resume analysis and recommendation with multi-model intelligence,'' \textit{IEEE Conference Publication}, 2024.
+
+\bibitem{atsllm2024}
+A. Khadilkar, ``Optimizing resume authenticity and ATS compatibility with LLM feedback integration,'' \textit{Cal Poly CENG SURP}, 2024.
+
+\bibitem{resumebuilder2024}
+R. Sharma et al., ``AI-powered resume builder: Enhancing job applications with artificial intelligence,'' \textit{IEEE Conference Publication}, 2024.
+
+\bibitem{bender2021}
+E. M. Bender, T. Gebru, A. McMillan-Major, and S. Shmitchell, ``On the dangers of stochastic parrots: Can language models be too big?'' in \textit{FAccT}, 2021.
+
+\bibitem{barocas2016}
+S. Barocas and A. D. Selbst, ``Big data's disparate impact,'' \textit{California Law Review}, vol. 104, no. 3, pp. 671--732, 2016.
+
+\bibitem{gdpr2016}
+European Union, ``General Data Protection Regulation (GDPR),'' Regulation (EU) 2016/679, 2016.
+
+\end{thebibliography}
+
+\end{document}
+\documentclass[conference]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{cite}
+\usepackage{array}
+
+\title{Extensive Review of Existing Chatbot Systems for Career Assistance and Resume Support}
+
+\author{\IEEEauthorblockN{Amruta Anil Bargal}
+\IEEEauthorblockA{\textit{Department of Data Science Engineering} \\
+\textit{Dr. Vithalrao Vikhe Patil College Of Engineering}\\
+Ahmednagar, India}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This review paper presents an extensive study of old and existing chatbot systems relevant to career assistance, resume writing, and recruitment-oriented support workflows. The paper is strictly literature-focused and intentionally excludes any new implementation, prototype evaluation, or proposed architecture claims. It examines the historical progression of conversational systems from rule-based agents and retrieval pipelines to neural sequence models and transformer-based large language model assistants. Beyond core dialogue engines, the paper reviews supporting layers such as document-aware interfaces, voice interaction modules, and ATS-focused resume tools. For each category, strengths and weaknesses are discussed in terms of language quality, contextual continuity, controllability, reliability, fairness, accessibility, privacy, and deployment feasibility. A multi-dimensional comparative analysis is provided to identify recurring design trade-offs across generations of systems. The paper further summarizes evaluation practices reported in prior work and highlights unresolved gaps in benchmarking, governance, and real-world career outcomes. This document aims to provide a rigorous academic baseline for understanding what existing systems offer and where their limitations persist.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Review Paper, Existing Systems, Chatbot History, LLM Chatbots, Resume Assistance, ATS Systems, Literature Survey
+\end{IEEEkeywords}
+
+\section{Introduction}
+\subsection{Background}
+Conversational computing has evolved over several decades. Early systems used symbolic patterns and scripted templates, while modern systems rely on large-scale neural architectures \cite{weizenbaum1966,wallace2009,adamopoulou2020}. This evolution shifted chatbot behavior from deterministic but shallow interactions to fluent but probabilistic language generation. In parallel, recruitment ecosystems increasingly depend on software pipelines where resume parsing and keyword filtering influence candidate visibility \cite{black2020}. As a result, chatbot use has expanded into career contexts that include profile guidance, resume edits, interview preparation, and application-document optimization.
+
+\subsection{Need for an Extensive Review}
+Research and project work in this area often jumps quickly to implementation. However, without careful analysis of old and existing systems, implementations may repeat known limitations such as context fragmentation, weak controllability, or opaque scoring logic. A high-quality review helps identify which ideas are mature, which are unstable, and which remain unsolved. This paper therefore focuses only on existing systems and prior literature.
+
+\subsection{Contributions of This Review}
+This review contributes:
+\begin{itemize}
+    \item a structured historical map of chatbot generations,
+    \item category-wise advantages and disadvantages for career-assistance relevance,
+    \item comparative analysis using technical and usability dimensions,
+    \item consolidation of common limitations reported across studies,
+    \item synthesis of open issues in trust, governance, and evaluation.
+\end{itemize}
+
+\section{Review Methodology}
+\subsection{Scope}
+The survey covers five major streams:
+\begin{enumerate}
+    \item rule-based and scripted chatbot systems,
+    \item retrieval and intent-classification systems,
+    \item neural generative and transformer/LLM systems,
+    \item multimodal and voice-enabled conversational interfaces,
+    \item resume-assistance and ATS-oriented support tools.
+\end{enumerate}
+
+\subsection{Selection Strategy}
+Sources were selected based on one or more of the following criteria:
+\begin{itemize}
+    \item historical or technical significance,
+    \item direct relevance to chatbot behavior or architecture,
+    \item practical findings on user interaction or deployment,
+    \item relevance to recruitment or resume-related workflows.
+\end{itemize}
+
+\subsection{Comparison Framework}
+To maintain consistency, each category is analyzed across:
+\begin{itemize}
+    \item language understanding and generation quality,
+    \item context retention and multi-turn continuity,
+    \item controllability and response predictability,
+    \item reliability, hallucination risk, and trust factors,
+    \item modality coverage and accessibility,
+    \item privacy, fairness, and operational feasibility.
+\end{itemize}
+
+\section{Historical Evolution of Existing Chatbots}
+\subsection{Rule-Based Conversational Systems}
+Rule-based chatbots represent the earliest practical conversational systems. ELIZA demonstrated that simple pattern transformations can imitate conversation under constrained scripts \cite{weizenbaum1966}. Later AIML-driven systems, such as ALICE, expanded script libraries and improved response coverage in narrow domains \cite{wallace2009}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item deterministic outputs with high explainability,
+    \item low runtime cost and low infrastructure requirements,
+    \item strong control for fixed-domain interactions.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item poor semantic understanding of user intent,
+    \item brittle behavior for paraphrased queries,
+    \item weak multi-turn context handling.
+\end{itemize}
+
+In career contexts, rule systems work for static guidance (for example, section ordering rules) but fail when users ask nuanced personalization questions.
+
+\subsection{Retrieval and Intent-Oriented Systems}
+Intent-based and retrieval systems classify user inputs and map them to curated responses or knowledge snippets \cite{shawar2007}. This approach improved consistency and policy control in production settings.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item stable behavior for known intents,
+    \item strong moderation and governance compatibility,
+    \item easier compliance in regulated environments.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item heavy dependence on curated intent datasets,
+    \item high maintenance burden as domains evolve,
+    \item limited flexibility for exploratory conversation.
+\end{itemize}
+
+\subsection{Neural Sequence-to-Sequence Models}
+Neural sequence-to-sequence models introduced free-form generation and reduced manual rule authoring \cite{sutskever2014}. They enabled more natural responses but commonly produced generic or repetitive text in open-ended settings.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item improved fluency relative to rigid retrieval templates,
+    \item better adaptation to lexical variation,
+    \item potential for personalized content generation.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item weak factual grounding,
+    \item instability over long dialogues,
+    \item limited interpretability and control.
+\end{itemize}
+
+\subsection{Transformer and LLM-Based Systems}
+Transformer architectures significantly advanced contextual language modeling \cite{vaswani2017}. Modern LLM chatbots can generate high-quality drafts, perform rewriting tasks, and provide broad-domain assistance \cite{thoppilan2022}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item high linguistic quality and stylistic flexibility,
+    \item better instruction-following behavior,
+    \item strong utility for drafting and polishing text.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item hallucination and overconfidence risks,
+    \item sensitivity to prompt quality and context window limits,
+    \item cost and latency constraints in large-scale deployment.
+\end{itemize}
+
+\section{Review of Supporting Technologies}
+\subsection{Multimodal Interfaces}
+Multimodal systems combine text processing with image, audio, and document cues \cite{baltrusaitis2019,lu2019}. In career workflows, this is useful for reading job descriptions, resumes, certificates, and portfolio material.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item stronger grounding in user-provided evidence,
+    \item improved support for document-heavy tasks,
+    \item richer context for recommendation generation.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item added complexity in orchestration pipelines,
+    \item variable quality across file formats and OCR quality,
+    \item increased privacy and data-governance burden.
+\end{itemize}
+
+\subsection{Voice Interaction Layers}
+Voice interfaces built on web speech APIs expand accessibility and convenience \cite{w3c2023,pradhan2018}. They are useful for rapid idea capture and hands-free interaction.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item lower interaction friction for many users,
+    \item improved accessibility for users with typing constraints.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item recognition quality varies with environment and accent,
+    \item browser and device compatibility issues,
+    \item limited domain-level understanding in many deployments.
+\end{itemize}
+
+\subsection{Resume Builders and ATS Scoring Tools}
+Standalone resume platforms and ATS-check tools provide templates, formatting guidance, and keyword-based suggestions \cite{resumai2024,resumebuilder2024,atsllm2024}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item structured output suitable for recruiters and portals,
+    \item practical feedback for keyword alignment,
+    \item efficient export to standard document formats.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item often limited personalized reasoning depth,
+    \item weak conversational revision loops,
+    \item opaque or inconsistent scoring interpretations.
+\end{itemize}
+
+\section{Domain-Wise Review of Existing Applications}
+\subsection{Education and Student Support}
+Academic institutions use chatbots for admission FAQs, assignment support, and informational triage. Rule and retrieval systems remain common because of predictability and manageable operating cost. However, complex advising tasks involving long-term student progression often expose limits in context retention and personalization.
+
+\subsection{Customer Service and Enterprise Support}
+Enterprise chatbots prioritize controlled responses, escalation policies, and incident triage. Retrieval and intent systems are widely used due to governance requirements. LLM augmentation improves naturalness but introduces risk management concerns related to factual drift and liability.
+
+\subsection{Healthcare and Wellbeing Assistance}
+Healthcare conversational systems are typically constrained to low-risk advisory roles. Safety requirements favor controlled templates over unrestricted generation. Voice interfaces may improve accessibility but can degrade in noisy environments or for medically nuanced terminology.
+
+\subsection{Recruitment and Career Assistance}
+Career systems involve resume writing, skill mapping, interview simulation, and ATS-oriented feedback. LLM-powered tools improved language quality and editing speed, yet literature still highlights reliability, fairness, and transparency concerns in recommendation logic.
+
+\section{Comparative Analysis}
+\subsection{Architecture-Centric Comparison}
+\begin{table*}[ht]
+\centering
+\caption{Comparison of existing chatbot architectures}
+\begin{tabular}{|p{2.6cm}|p{2.7cm}|p{2.4cm}|p{2.4cm}|p{4.0cm}|}
+\hline
+\textbf{Category} & \textbf{Core Mechanism} & \textbf{Context Depth} & \textbf{Control Level} & \textbf{Common Limitation} \\
+\hline
+Rule-based & Pattern-template rules & Low & Very high & Fails beyond predefined rule space \\
+\hline
+Intent/retrieval & Classification + response lookup & Medium & High & Hard to scale intent libraries \\
+\hline
+Seq2seq neural & End-to-end sequence generation & Medium & Medium-low & Generic outputs and weak grounding \\
+\hline
+Transformer/LLM & Pretrained large language modeling & High & Medium & Hallucinations and cost sensitivity \\
+\hline
+Multimodal pipelines & LLM + file/media processing layers & Medium-high & Medium & Pipeline fragility and privacy exposure \\
+\hline
+\end{tabular}
+\end{table*}
+
+\subsection{Career-Workflow Comparison}
+\begin{table*}[ht]
+\centering
+\caption{Existing systems in career-assistance workflows}
+\begin{tabular}{|p{3.0cm}|p{3.8cm}|p{3.8cm}|p{3.3cm}|}
+\hline
+\textbf{System Type} & \textbf{Strongest Use Case} & \textbf{Weakest Use Case} & \textbf{Observed Outcome} \\
+\hline
+Rule-based bot & Static resume-format instructions & Personalized profile storytelling & Fast but shallow guidance \\
+\hline
+Intent/retrieval bot & Structured process navigation & Ambiguous goal discovery dialogue & Stable but inflexible \\
+\hline
+LLM chatbot & Rewriting bullets, summaries, cover letters & Fact-critical claims and verifiability & High utility, mixed trust \\
+\hline
+Resume/ATS platform & Formatting and keyword checks & Multi-turn adaptive coaching & Practical output, low interaction depth \\
+\hline
+Voice-enabled assistant & Quick ideation and accessibility support & Precision editing with technical terms & Good convenience, variable accuracy \\
+\hline
+\end{tabular}
+\end{table*}
+
+\subsection{Trade-Off Patterns}
+Across literature, three trade-offs are repeatedly reported:
+\begin{enumerate}
+    \item \textbf{Control vs Flexibility:} Rule-heavy systems maximize control but limit adaptability.
+    \item \textbf{Fluency vs Reliability:} Highly fluent generation does not guarantee factual correctness.
+    \item \textbf{Capability vs Complexity:} Multimodal features improve utility while raising integration risk.
+\end{enumerate}
+
+\section{Evaluation Practices in Existing Literature}
+\subsection{Common Metrics}
+Existing studies use mixed metrics, including response relevance, user satisfaction, task completion rates, and occasionally automatic text-quality measures. In resume-support tools, some papers report ATS score shifts or keyword coverage deltas.
+
+\subsection{Limitations of Current Evaluation}
+Evaluation remains fragmented because different studies use different tasks, datasets, and success definitions. This makes direct comparison difficult. A system may score well on linguistic quality but still fail in user trust or recruiter-facing readability.
+
+\subsection{Need for Standardized Benchmarks}
+Literature indicates need for shared benchmarks that combine:
+\begin{itemize}
+    \item linguistic quality,
+    \item factual reliability,
+    \item fairness and bias checks,
+    \item user effort and usability outcomes,
+    \item real-world task effectiveness.
+\end{itemize}
+
+\section{Key Limitations Reported Across Existing Systems}
+\subsection{Hallucination and Verifiability}
+Large generative models can produce convincing but incorrect content \cite{bender2021}. In career documents, unsupported claims or inaccurate phrasing can reduce credibility and lead to negative outcomes.
+
+\subsection{Bias and Fairness}
+AI systems may reflect social and historical bias in training data or scoring heuristics \cite{barocas2016}. In hiring-related contexts, even subtle bias can disproportionately affect recommendations for different user groups.
+
+\subsection{Privacy and Data Governance}
+Resume data includes personally identifiable information. Cloud APIs, third-party processors, and retained logs can increase exposure risk if governance policies are weak \cite{gdpr2016}.
+
+\subsection{Operational Constraints}
+Rate limits, token costs, API dependency, and latency variability make sustained deployment challenging, especially for student projects or budget-limited institutions.
+
+\subsection{Interpretability Gaps}
+Many systems provide outputs without clear rationale. Users may receive suggestions but cannot understand why one recommendation is preferred over another, reducing trust and accountability.
+
+\section{Discussion}
+\subsection{What Old Systems Still Do Well}
+Older systems still provide value where strict control, deterministic behavior, and low cost are critical. They remain practical for constrained FAQ scenarios and high-volume informational queries.
+
+\subsection{Why Modern Systems Are Widely Adopted}
+Modern LLM-based systems are adopted because they dramatically reduce writing effort and provide richer interaction quality. For resume-related work, users benefit from rapid editing, paraphrasing, and tone adaptation.
+
+\subsection{Persistent Unresolved Issues}
+Despite major progress, unresolved issues remain consistent across papers: reliability under ambiguity, fairness auditing, data-governance clarity, and benchmark standardization. These issues are not confined to one architecture generation.
+
+\section{Conclusion}
+This paper presented an extensive review of old and existing chatbot systems for career assistance and resume support, without introducing any new implementation. The analysis showed clear evolution from deterministic scripted agents to high-capability language models and multimodal assistants. At the same time, literature continues to report recurring limitations in factual reliability, transparency, fairness, privacy handling, and comparable evaluation design. The synthesis in this review is intended to serve as a robust academic base for future research work in trustworthy career-assistance technologies.
+
+\section*{References}
+\begin{thebibliography}{99}
+
+\bibitem{weizenbaum1966}
+J. Weizenbaum, ``ELIZA---a computer program for the study of natural language communication between man and machine,'' \textit{Communications of the ACM}, vol. 9, no. 1, pp. 36--45, 1966.
+
+\bibitem{wallace2009}
+R. S. Wallace, ``The anatomy of A.L.I.C.E.,'' in \textit{Parsing the Turing Test}, Springer, 2009, pp. 181--210.
+
+\bibitem{adamopoulou2020}
+E. Adamopoulou and L. Moussiades, ``Chatbots: History, technology, and applications,'' \textit{Machine Learning with Applications}, vol. 2, p. 100006, 2020.
+
+\bibitem{shawar2007}
+B. A. Shawar and E. Atwell, ``Chatbots: Are they really useful?'' \textit{LDV Forum}, vol. 22, no. 1, pp. 29--49, 2007.
+
+\bibitem{sutskever2014}
+I. Sutskever, O. Vinyals, and Q. V. Le, ``Sequence to sequence learning with neural networks,'' in \textit{Advances in Neural Information Processing Systems}, 2014.
+
+\bibitem{vaswani2017}
+A. Vaswani et al., ``Attention is all you need,'' in \textit{Advances in Neural Information Processing Systems}, vol. 30, 2017.
+
+\bibitem{thoppilan2022}
+R. Thoppilan et al., ``LaMDA: Language models for dialog applications,'' \textit{arXiv preprint arXiv:2201.08239}, 2022.
+
+\bibitem{baltrusaitis2019}
+T. Baltrusaitis, C. Ahuja, and L. P. Morency, ``Multimodal machine learning: A survey and taxonomy,'' \textit{IEEE Transactions on Pattern Analysis and Machine Intelligence}, vol. 41, no. 2, pp. 423--443, 2019.
+
+\bibitem{lu2019}
+J. Lu, D. Batra, D. Parikh, and S. Lee, ``ViLBERT: Pretraining task-agnostic visiolinguistic representations for vision-and-language tasks,'' in \textit{Advances in Neural Information Processing Systems}, vol. 32, 2019.
+
+\bibitem{w3c2023}
+W3C, ``Web Speech API Specification,'' 2023. [Online]. Available: \url{https://w3c.github.io/speech-api/}
+
+\bibitem{pradhan2018}
+A. Pradhan, K. Mehta, and L. Findlater, ``Accessibility came by accident: Use of voice-controlled intelligent personal assistants by people with disabilities,'' in \textit{Proceedings of CHI}, 2018.
+
+\bibitem{black2020}
+J. S. Black and P. van Esch, ``AI-enabled recruiting: What is it and how should a manager use it?'' \textit{Business Horizons}, vol. 63, no. 2, pp. 215--226, 2020.
+
+\bibitem{raghavan2020}
+M. Raghavan, S. Barocas, J. Kleinberg, and K. Levy, ``Mitigating bias in algorithmic hiring: Evaluating claims and practices,'' in \textit{FAT* Conference}, 2020.
+
+\bibitem{resumai2024}
+M. Khan et al., ``ResumAI: Revolutionizing automated resume analysis and recommendation with multi-model intelligence,'' \textit{IEEE Conference Publication}, 2024.
+
+\bibitem{atsllm2024}
+A. Khadilkar, ``Optimizing resume authenticity and ATS compatibility with LLM feedback integration,'' \textit{Cal Poly CENG SURP}, 2024.
+
+\bibitem{resumebuilder2024}
+R. Sharma et al., ``AI-powered resume builder: Enhancing job applications with artificial intelligence,'' \textit{IEEE Conference Publication}, 2024.
+
+\bibitem{bender2021}
+E. M. Bender, T. Gebru, A. McMillan-Major, and S. Shmitchell, ``On the dangers of stochastic parrots: Can language models be too big?'' in \textit{FAccT}, 2021.
+
+\bibitem{barocas2016}
+S. Barocas and A. D. Selbst, ``Big data's disparate impact,'' \textit{California Law Review}, vol. 104, no. 3, pp. 671--732, 2016.
+
+\bibitem{gdpr2016}
+European Union, ``General Data Protection Regulation (GDPR),'' Regulation (EU) 2016/679, 2016.
+
+\end{thebibliography}
+
+\end{document}
+\documentclass[conference]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{cite}
+\usepackage{array}
+
+\title{Comprehensive Review of Existing Chatbot Systems for Career Assistance and Resume Support}
+
+\author{\IEEEauthorblockN{Amruta Anil Bargal}
+\IEEEauthorblockA{\textit{Department of Data Science Engineering} \\
+\textit{Dr. Vithalrao Vikhe Patil College Of Engineering}\\
+Ahmednagar, India}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper presents a comprehensive review of old and existing chatbot systems used for career assistance, resume preparation, and recruitment-support tasks. The study is strictly literature-oriented and does not include any new implementation. The review traces the historical progression from rule-based conversational programs to retrieval chatbots, sequence-to-sequence systems, transformer-based large language model assistants, and multimodal platforms. Existing voice interfaces, document-aware systems, and ATS-oriented resume tools are also examined as supporting technologies around chatbot ecosystems. For each category, the paper analyzes strengths, weaknesses, and practical deployment limits with special attention to contextual quality, reliability, accessibility, scalability, and user trust. A comparative synthesis is provided through architecture-level and usability-level dimensions to show what earlier systems solved well and where persistent limitations remain. The review concludes with key observations from published work and identifies open technical and evaluation challenges that continue across generations of systems.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Review Paper, Existing Systems, Chatbot History, Rule-Based Chatbots, LLM Chatbots, Resume Assistance, ATS Tools
+\end{IEEEkeywords}
+
+\section{Introduction}
+\subsection{Background}
+Conversational AI has progressed through multiple generations, beginning with symbolic pattern-matching systems and moving toward neural language models trained on large corpora \cite{weizenbaum1966,wallace2009,adamopoulou2020}. In the last decade, chatbots have become common in education, customer support, healthcare triage, and productivity software \cite{shawar2007}. Career assistance is now an additional high-impact area where users expect help with profile writing, resume refinement, and interview preparation \cite{black2020}. At the same time, recruitment pipelines have changed due to applicant tracking systems (ATS) that filter resumes using structural and keyword-based criteria \cite{raghavan2020}. This shift has encouraged the rise of AI writing assistants, resume builders, and ATS optimization tools.
+
+\subsection{Motivation for This Review}
+Many students and researchers start with implementation, but strong implementation quality depends on deep understanding of prior systems. A review paper is therefore essential to study what old systems achieved, where they failed, and which limitations still continue in modern tools. This document is intentionally restricted to existing literature and existing platforms. It does not propose a new architecture, does not report experiments from a new prototype, and does not claim implementation outcomes.
+
+\subsection{Objectives}
+The objectives of this review are:
+\begin{enumerate}
+    \item To map the historical evolution of chatbot systems relevant to career-support workflows.
+    \item To analyze the advantages and disadvantages of major system categories.
+    \item To compare existing approaches across technical and user-centric criteria.
+    \item To summarize persistent limitations in old and current systems.
+    \item To provide a literature-grounded academic reference for future study.
+\end{enumerate}
+
+\section{Review Methodology}
+\subsection{Scope}
+The review focuses on five streams of prior work:
+\begin{itemize}
+    \item early rule-based and scripted conversational systems,
+    \item retrieval and intent-classification chatbots,
+    \item generative neural and transformer-based chatbots,
+    \item multimodal and voice-enabled conversational interfaces,
+    \item standalone resume and ATS-assistance platforms.
+\end{itemize}
+
+\subsection{Selection Criteria}
+Sources were considered when they satisfied at least one of the following:
+\begin{itemize}
+    \item foundational role in chatbot history,
+    \item architecture-level explanation of production or research systems,
+    \item evidence regarding usability, reliability, or deployment constraints,
+    \item direct relevance to resume, job-application, or ATS contexts.
+\end{itemize}
+
+\subsection{Comparison Dimensions}
+All categories are compared using common dimensions:
+\begin{itemize}
+    \item language understanding quality,
+    \item context retention and dialogue continuity,
+    \item controllability and factual reliability,
+    \item modality support (text, voice, documents, media),
+    \item practical usability for career-related tasks,
+    \item deployment and maintenance complexity.
+\end{itemize}
+
+\section{Historical Evolution of Existing Chatbot Systems}
+\subsection{Rule-Based Chatbots}
+Rule-based systems represent the first generation of conversational software. ELIZA is one of the best known examples, using keyword patterns and scripted transformations to imitate psychotherapy dialogue \cite{weizenbaum1966}. Later systems such as ALICE used AIML rule templates to expand conversational coverage \cite{wallace2009}. These systems were transparent and controllable because response logic was explicitly authored.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item deterministic and explainable response behavior,
+    \item very low runtime cost and fast response time,
+    \item easy debugging in narrow domains.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item no true semantic understanding,
+    \item poor handling of paraphrased or unseen queries,
+    \item inability to retain deep conversation context.
+\end{itemize}
+
+In career-assistance settings, rule-based systems were acceptable for predefined FAQs (e.g., ``How to format resume header?'') but weak for nuanced tasks such as tailoring a profile summary for different job descriptions.
+
+\subsection{Retrieval and Intent-Based Systems}
+Second-generation systems used intent classification, entity extraction, and response retrieval from curated knowledge bases \cite{shawar2007}. These architectures improved consistency and reduced unsafe generation compared to free-form text generation. Industrial bots in helpdesk or support platforms frequently used this design because it balanced quality and control.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item higher precision for known intents,
+    \item better governance and policy control,
+    \item stable behavior under production constraints.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item dependent on manually curated intents and examples,
+    \item costly updates when domain scope changes,
+    \item weak flexibility for multi-turn exploratory dialogue.
+\end{itemize}
+
+For career guidance, intent bots can manage template-driven flows (e.g., ``add education section,'' ``export resume''), but they usually struggle when users ask open-ended comparative questions or request stylistic rewriting across multiple sections.
+
+\subsection{Neural Sequence-to-Sequence Systems}
+Sequence-to-sequence and attention-based dialogue models marked a transition from retrieval to generation \cite{sutskever2014}. These models could produce novel responses and better handle linguistic variation. However, early generative models frequently generated generic or repetitive outputs and suffered from weak factual grounding.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item improved fluency compared with strictly retrieval bots,
+    \item capacity to generate customized responses,
+    \item reduced rule-authoring overhead.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item tendency toward vague ``safe'' replies,
+    \item weak long-range memory and dialogue coherence,
+    \item difficult output control for sensitive domains.
+\end{itemize}
+
+\subsection{Transformer and LLM-Based Systems}
+Transformer architectures revolutionized natural language processing by improving long-range dependency modeling \cite{vaswani2017}. Large language models enabled high-quality multi-turn conversation, instruction following, and content generation across many domains \cite{thoppilan2022}. This stage significantly improved practical value for writing assistance and resume drafting.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item strong language generation quality,
+    \item broad world knowledge and stylistic flexibility,
+    \item useful support for rewriting and summarization.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item hallucinated facts and overconfident language,
+    \item sensitivity to prompt wording and context windows,
+    \item API cost, latency, and rate-limit constraints.
+\end{itemize}
+
+Although LLM chatbots improved writing quality for resumes and cover letters, literature still reports reliability concerns, especially when users require factual claims, quantified achievements, or legal/ethical career advice.
+
+\section{Review of Existing Supporting Technologies}
+\subsection{Multimodal Chat Interfaces}
+Multimodal learning research shows that combining text with visual or document signals can improve contextual understanding \cite{baltrusaitis2019,lu2019}. In practical tools, document-aware chatbots can parse PDFs, extract textual evidence, and support discussion over uploaded material. This is useful in career scenarios where resumes, certificates, and job descriptions are provided together.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item better task grounding through user-provided files,
+    \item improved relevance for document-heavy use cases,
+    \item stronger practical utility than text-only flows.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item high implementation complexity and larger failure surface,
+    \item inconsistent quality across file types,
+    \item privacy concerns for uploaded personal documents.
+\end{itemize}
+
+\subsection{Voice-Enabled Assistants}
+Voice interfaces became feasible in browsers through APIs such as Web Speech \cite{w3c2023}. Prior studies indicate voice input can improve accessibility and reduce input friction for some users \cite{pradhan2018}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item improved accessibility and inclusive interaction,
+    \item faster first-draft input in brainstorming stages.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item recognition errors from accent/noise variability,
+    \item dependency on browser and device capabilities,
+    \item often limited to transcription rather than deep dialogue understanding.
+\end{itemize}
+
+\subsection{Resume Builders and ATS Tools}
+Resume builders and ATS-analysis tools are now common in both academic studies and industry products \cite{resumai2024,resumebuilder2024,atsllm2024}. Most provide templates, section guidance, keyword density cues, and export options.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item structured formatting support,
+    \item practical keyword guidance for screening systems,
+    \item user-friendly export pipelines.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item limited reasoning about career narratives,
+    \item weak conversational feedback loops in many tools,
+    \item inconsistent transparency of scoring logic.
+\end{itemize}
+
+\section{Comparative Analysis of Existing Systems}
+\subsection{Architecture-Level Comparison}
+\begin{table*}[ht]
+\centering
+\caption{Architecture-oriented comparison of existing chatbot generations}
+\begin{tabular}{|p{2.8cm}|p{2.7cm}|p{2.5cm}|p{2.7cm}|p{3.6cm}|}
+\hline
+\textbf{Category} & \textbf{Core Mechanism} & \textbf{Context Quality} & \textbf{Control Level} & \textbf{Typical Limitation} \\
+\hline
+Rule-based & Pattern and scripted templates & Low & Very high & Cannot generalize beyond authored rules \\
+\hline
+Retrieval/intent & Classification + response retrieval & Medium & High & Rigid intent boundaries and maintenance overhead \\
+\hline
+Seq2seq generative & Neural sequence modeling & Medium & Medium-low & Generic outputs and weaker factual grounding \\
+\hline
+Transformer/LLM & Large-scale pretrained language modeling & High & Medium & Hallucinations, cost, and governance challenges \\
+\hline
+Multimodal chat & Text + file/media understanding pipeline & Medium-high & Medium & Complex orchestration and privacy risk \\
+\hline
+\end{tabular}
+\end{table*}
+
+\subsection{Usability-Level Comparison}
+\begin{table*}[ht]
+\centering
+\caption{Usability comparison in career-assistance context}
+\begin{tabular}{|p{3.1cm}|p{3.6cm}|p{3.8cm}|p{3.8cm}|}
+\hline
+\textbf{System Type} & \textbf{Where It Performs Well} & \textbf{Where It Performs Poorly} & \textbf{Observed User Impact} \\
+\hline
+Rule-based bots & Repetitive FAQ guidance & Personalized resume rewriting & Fast but shallow interaction \\
+\hline
+Intent/retrieval bots & Controlled workflow tasks & Open-ended coaching questions & Reliable but less flexible \\
+\hline
+LLM chatbots & Drafting, rewriting, idea expansion & Fact verification, policy-sensitive advice & High perceived helpfulness, variable trust \\
+\hline
+Voice-first interfaces & Accessibility and quick input & Noisy environments, domain-heavy editing & Good convenience, variable accuracy \\
+\hline
+ATS/resume platforms & Formatting and keyword checks & Narrative personalization and contextual reasoning & Efficient templates, limited adaptive coaching \\
+\hline
+\end{tabular}
+\end{table*}
+
+\subsection{Cross-Category Observations}
+Three patterns repeatedly appear in literature. First, control and flexibility usually trade off against each other: rule-heavy systems provide control but low adaptability, while generative systems provide adaptability with reduced predictability. Second, adding modality support improves practical usefulness but also increases engineering and governance complexity. Third, many products perform well in isolated tasks (chat, formatting, scoring) but less effectively across complete end-to-end career workflows.
+
+\section{Key Limitations Reported Across Existing Work}
+\subsection{Factual Reliability and Hallucination}
+Generative systems can produce fluent yet incorrect claims, especially when asked for domain-specific details without grounded sources \cite{bender2021}. In career contexts, incorrect statements about qualifications, standards, or industry requirements can directly affect application quality. Existing mitigation strategies include retrieval augmentation, citation prompts, and constrained templates, but none fully eliminate the problem in all settings.
+
+\subsection{Bias and Fairness Concerns}
+Language models and historical hiring datasets can reflect social and institutional bias \cite{barocas2016}. In career guidance tools, this may surface as skewed skill recommendations, unequal tone suggestions, or indirect discrimination signals in optimization heuristics. Many existing systems offer limited transparency on how recommendations are formed, making fairness auditing difficult.
+
+\subsection{Privacy and Data Security}
+Career documents contain sensitive personal data such as contact details, education records, and work history. Cloud-based processing and third-party APIs introduce data exposure risk if governance is weak \cite{gdpr2016}. Older local tools were less capable but sometimes safer by default because they avoided continuous data transmission. Modern systems increase utility but require stronger privacy controls, consent clarity, and retention policies.
+
+\subsection{Evaluation Fragmentation}
+There is no universally accepted benchmark for ``career-assistance chatbot quality.'' Studies use mixed metrics such as BLEU-like text similarity, user satisfaction, ATS scores, or qualitative judgments, which complicates comparison across papers. A system may appear strong in language fluency but weak in practical outcomes such as interview call conversion or recruiter readability.
+
+\subsection{Scalability and Cost Constraints}
+API pricing, rate limits, and context-window costs are significant barriers for sustained usage. Institutions and students with limited budgets may not be able to use high-end models continuously. Earlier systems were less capable but more predictable in cost. Existing literature therefore highlights a recurring trade-off: performance gains are often linked to higher operational cost.
+
+\section{Discussion}
+\subsection{What Old Systems Still Offer}
+Older rule-based and retrieval systems remain valuable where strict compliance, predictable output, and low cost are required. In academic institutions or campus cells with large user volume and repetitive queries, these systems can still be effective if expectations are carefully bounded.
+
+\subsection{Why Modern Systems Dominate}
+Despite limitations, modern LLM-driven and multimodal systems dominate because they reduce user effort in writing-intensive tasks. They can rewrite resume bullets, adjust tone, summarize achievements, and support iterative revisions faster than older scripted systems.
+
+\subsection{What the Literature Still Lacks}
+The major gap in current literature is not only model capability but system-level evaluation under real recruitment workflows. Many papers report component-level success (e.g., good generated summaries) but fewer studies evaluate longitudinal outcomes such as consistency across revisions, recruiter acceptance quality, or fairness under diverse user backgrounds.
+
+\section{Conclusion}
+This review paper presented a detailed analysis of old and existing chatbot ecosystems relevant to career assistance and resume support. The survey covered rule-based systems, retrieval models, neural generation approaches, transformer-based assistants, voice interfaces, multimodal tools, and ATS-centric resume platforms. Across generations, the literature shows steady improvement in fluency and usability, but persistent limitations in factual reliability, fairness, privacy governance, and standardized evaluation. The comparison provided here is intended as a strong academic baseline for future research and dissertation work focused on trustworthy and practical career-assistance systems.
+
+\section*{References}
+\begin{thebibliography}{99}
+
+\bibitem{weizenbaum1966}
+J. Weizenbaum, ``ELIZA---a computer program for the study of natural language communication between man and machine,'' \textit{Communications of the ACM}, vol. 9, no. 1, pp. 36--45, 1966.
+
+\bibitem{wallace2009}
+R. S. Wallace, ``The anatomy of A.L.I.C.E.,'' in \textit{Parsing the Turing Test}, Springer, 2009, pp. 181--210.
+
+\bibitem{adamopoulou2020}
+E. Adamopoulou and L. Moussiades, ``Chatbots: History, technology, and applications,'' \textit{Machine Learning with Applications}, vol. 2, p. 100006, 2020.
+
+\bibitem{shawar2007}
+B. A. Shawar and E. Atwell, ``Chatbots: Are they really useful?'' \textit{LDV Forum}, vol. 22, no. 1, pp. 29--49, 2007.
+
+\bibitem{sutskever2014}
+I. Sutskever, O. Vinyals, and Q. V. Le, ``Sequence to sequence learning with neural networks,'' in \textit{Advances in Neural Information Processing Systems}, 2014.
+
+\bibitem{vaswani2017}
+A. Vaswani et al., ``Attention is all you need,'' in \textit{Advances in Neural Information Processing Systems}, vol. 30, 2017.
+
+\bibitem{thoppilan2022}
+R. Thoppilan et al., ``LaMDA: Language models for dialog applications,'' \textit{arXiv preprint arXiv:2201.08239}, 2022.
+
+\bibitem{baltrusaitis2019}
+T. Baltrusaitis, C. Ahuja, and L. P. Morency, ``Multimodal machine learning: A survey and taxonomy,'' \textit{IEEE Transactions on Pattern Analysis and Machine Intelligence}, vol. 41, no. 2, pp. 423--443, 2019.
+
+\bibitem{lu2019}
+J. Lu, D. Batra, D. Parikh, and S. Lee, ``ViLBERT: Pretraining task-agnostic visiolinguistic representations for vision-and-language tasks,'' in \textit{Advances in Neural Information Processing Systems}, vol. 32, 2019.
+
+\bibitem{w3c2023}
+W3C, ``Web Speech API Specification,'' 2023. [Online]. Available: \url{https://w3c.github.io/speech-api/}
+
+\bibitem{pradhan2018}
+A. Pradhan, K. Mehta, and L. Findlater, ``Accessibility came by accident: Use of voice-controlled intelligent personal assistants by people with disabilities,'' in \textit{Proceedings of CHI}, 2018.
+
+\bibitem{black2020}
+J. S. Black and P. van Esch, ``AI-enabled recruiting: What is it and how should a manager use it?'' \textit{Business Horizons}, vol. 63, no. 2, pp. 215--226, 2020.
+
+\bibitem{raghavan2020}
+M. Raghavan, S. Barocas, J. Kleinberg, and K. Levy, ``Mitigating bias in algorithmic hiring: Evaluating claims and practices,'' in \textit{FAT* Conference}, 2020.
+
+\bibitem{resumai2024}
+M. Khan et al., ``ResumAI: Revolutionizing automated resume analysis and recommendation with multi-model intelligence,'' \textit{IEEE Conference Publication}, 2024.
+
+\bibitem{atsllm2024}
+A. Khadilkar, ``Optimizing resume authenticity and ATS compatibility with LLM feedback integration,'' \textit{Cal Poly CENG SURP}, 2024.
+
+\bibitem{resumebuilder2024}
+R. Sharma et al., ``AI-powered resume builder: Enhancing job applications with artificial intelligence,'' \textit{IEEE Conference Publication}, 2024.
+
+\bibitem{bender2021}
+E. M. Bender, T. Gebru, A. McMillan-Major, and S. Shmitchell, ``On the dangers of stochastic parrots: Can language models be too big?'' in \textit{FAccT}, 2021.
+
+\bibitem{barocas2016}
+S. Barocas and A. D. Selbst, ``Big data's disparate impact,'' \textit{California Law Review}, vol. 104, no. 3, pp. 671--732, 2016.
+
+\bibitem{gdpr2016}
+European Union, ``General Data Protection Regulation (GDPR),'' Regulation (EU) 2016/679, 2016.
+
+\end{thebibliography}
+
+\end{document}
+\documentclass[conference]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{cite}
+
+\title{Review of Existing Chatbot Systems for Career Assistance: A Study of Traditional and Current Approaches}
+
+\author{\IEEEauthorblockN{Amruta Anil Bargal}
+\IEEEauthorblockA{\textit{Department of Data Science Engineering} \\
+\textit{Dr. Vithalrao Vikhe Patil College Of Engineering}\\
+Ahmednagar, India}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper presents a review of old and existing chatbot systems related to career assistance and resume support. The study is limited to literature analysis and does not include any new implementation. The review traces the historical progression from rule-based chatbots to modern large language model systems, and examines associated tools such as voice-enabled assistants, document-aware chat interfaces, and standalone resume or ATS platforms. For each category, strengths and weaknesses are discussed in terms of usability, scalability, contextual understanding, and practical usefulness for job-seeking workflows. The paper provides a comparative synthesis of existing methods and identifies unresolved limitations in current systems.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Review Paper, Existing Systems, Chatbot History, Resume Assistance, ATS Tools, Literature Survey
+\end{IEEEkeywords}
+
+\section{Introduction}
+\subsection{Background}
+Conversational systems have been studied for decades, beginning with early pattern-matching systems and progressing toward neural language models \cite{weizenbaum1966,adamopoulou2020}. In parallel, recruitment workflows have become technology-driven, especially due to ATS-based filtering and keyword matching \cite{black2020}. As a result, many academic and industry solutions now connect chatbot support with resume-related tasks.
+
+\subsection{Purpose of This Review}
+The purpose of this paper is to review existing systems only. This document does not propose, implement, or evaluate a new model. It focuses on what previous systems provided, what benefits they achieved, and what limitations remain.
+
+\subsection{Review Objectives}
+The objectives are:
+\begin{enumerate}
+    \item To summarize old and current chatbot system categories.
+    \item To analyze advantages and disadvantages of each category.
+    \item To compare existing methods for career and resume-related use cases.
+    \item To identify persistent limitations in the literature.
+\end{enumerate}
+
+\section{Review Method}
+\subsection{Scope of Sources}
+The review includes studies on:
+\begin{itemize}
+    \item rule-based chatbots,
+    \item LLM-based conversational systems,
+    \item multimodal and document-aware chatbot tools,
+    \item voice-enabled interfaces,
+    \item resume builders and ATS-focused platforms.
+\end{itemize}
+
+\subsection{Selection Criteria}
+Papers and reports are selected if they:
+\begin{itemize}
+    \item describe chatbot architecture or behavior,
+    \item include practical user-interaction findings,
+    \item discuss resume assistance or ATS relevance,
+    \item present limitations or deployment challenges.
+\end{itemize}
+
+\subsection{Comparison Dimensions}
+Each system category is compared using:
+\begin{itemize}
+    \item conversation quality,
+    \item context handling,
+    \item modality support,
+    \item ease of use,
+    \item practical adoption constraints.
+\end{itemize}
+
+\section{Historical Review of Existing Systems}
+\subsection{Rule-Based Chatbots (Early Systems)}
+Early systems such as ELIZA relied on hand-crafted rules and keyword triggers \cite{weizenbaum1966}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item very fast response generation,
+    \item low computational requirements,
+    \item predictable behavior in narrow domains.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item poor natural language understanding,
+    \item no deep context memory,
+    \item limited support for complex user goals.
+\end{itemize}
+
+\subsection{Statistical and Retrieval-Based Systems}
+Later systems introduced intent classification and retrieval pipelines for better relevance.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item improved response consistency for known intents,
+    \item easier control in domain-specific deployments,
+    \item more stable than free-generation systems.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item heavy dependence on predefined datasets,
+    \item weak adaptation to unseen or ambiguous queries,
+    \item limited conversational flexibility.
+\end{itemize}
+
+\subsection{Transformer and LLM-Based Chatbots}
+Transformer architectures significantly improved contextual language generation \cite{vaswani2017,thoppilan2022}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item high-quality natural language responses,
+    \item stronger multi-turn contextual behavior,
+    \item useful support for drafting and rewriting content.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item possible hallucinated or unverifiable responses,
+    \item dependency on API access and usage limits,
+    \item variable reliability across domains.
+\end{itemize}
+
+\section{Review of Existing Supporting Technologies}
+\subsection{Multimodal and Document-Aware Chat Interfaces}
+Multimodal systems combine text with image/document information \cite{baltrusaitis2019,lu2019}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item better understanding of user-provided evidence,
+    \item more practical support in document-heavy scenarios,
+    \item improved assistant usefulness for real tasks.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item increased engineering complexity,
+    \item inconsistent processing quality across file types,
+    \item higher resource and latency requirements.
+\end{itemize}
+
+\subsection{Voice-Based Conversational Interfaces}
+Browser speech APIs enabled voice-to-text interaction in web assistants \cite{w3c2023,pradhan2018}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item better accessibility for diverse users,
+    \item faster query input in some settings.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item accuracy affected by accent/noise conditions,
+    \item browser and device dependency,
+    \item often limited to transcription functionality only.
+\end{itemize}
+
+\subsection{Standalone Resume Builders and ATS Platforms}
+Resume platforms provide structured templates and keyword checks for ATS compatibility.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item clear section-wise resume organization,
+    \item practical formatting and export options,
+    \item useful ATS keyword guidance.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item limited conversational support for revision,
+    \item weak personalization depth in many tools,
+    \item limited integration with broader user context.
+\end{itemize}
+
+\section{Comparative Summary of Existing Systems}
+\begin{table*}[ht]
+\centering
+\caption{Comparison of old and existing approaches}
+\begin{tabular}{|p{3.5cm}|p{4.1cm}|p{4.1cm}|p{4.1cm}|}
+\hline
+\textbf{System Type} & \textbf{Key Strengths} & \textbf{Key Weaknesses} & \textbf{Typical Use Cases} \\
+\hline
+Rule-based chatbots & Fast, predictable, low-cost & Rigid and non-adaptive dialogue & FAQ and scripted support \\
+\hline
+Retrieval/statistical bots & Better intent alignment, controlled outputs & Weak on open-ended conversation & Domain-specific help desks \\
+\hline
+LLM chatbots & Strong generation and contextual writing support & Reliability variation, API dependence & General assistance and drafting \\
+\hline
+Multimodal assistants & Better document and media understanding & Complex pipeline and latency overhead & File/document-centric help \\
+\hline
+Resume/ATS tools & Structured templates, ATS keyword suggestions & Limited deep conversational guidance & Job application document prep \\
+\hline
+Voice-enabled systems & Accessibility and rapid query input & Recognition instability, browser limits & Hands-free interaction \\
+\hline
+\end{tabular}
+\end{table*}
+
+\section{Key Findings from Literature}
+The literature indicates that:
+\begin{enumerate}
+    \item Old systems were robust but limited in intelligence and flexibility.
+    \item Modern systems improved language quality but introduced reliability and control challenges.
+    \item Supporting tools (voice, multimodal, ATS modules) improved usability but remained inconsistent in quality.
+    \item No single existing category solves all practical career-assistance needs effectively.
+\end{enumerate}
+
+\section{Limitations Reported in Existing Work}
+Common limitations across reviewed systems include:
+\begin{itemize}
+    \item context loss in long or complex user sessions,
+    \item inconsistent output quality across domains,
+    \item weak benchmark standardization for real-world career outcomes,
+    \item dependency on third-party APIs and platform constraints,
+    \item usability trade-offs between simplicity and feature richness.
+\end{itemize}
+
+\section{Conclusion}
+This review paper analyzed old and existing chatbot-related systems without presenting any new implementation. The comparison highlights clear progress from rule-based systems to modern AI assistants, while also showing unresolved limitations in context retention, reliability, and practical workflow support. The findings provide a literature-grounded understanding of current system capabilities and constraints for academic discussion.
+
+\section*{References}
+\begin{thebibliography}{99}
+
+\bibitem{weizenbaum1966}
+J. Weizenbaum, ``ELIZA---a computer program for the study of natural language communication between man and machine,'' \textit{Communications of the ACM}, vol. 9, no. 1, pp. 36--45, 1966.
+
+\bibitem{adamopoulou2020}
+E. Adamopoulou and L. Moussiades, ``Chatbots: History, technology, and applications,'' \textit{Machine Learning with Applications}, vol. 2, p. 100006, 2020.
+
+\bibitem{vaswani2017}
+A. Vaswani et al., ``Attention is all you need,'' in \textit{Advances in Neural Information Processing Systems}, vol. 30, pp. 5998--6008, 2017.
+
+\bibitem{thoppilan2022}
+R. Thoppilan et al., ``LaMDA: Language models for dialog applications,'' \textit{arXiv preprint arXiv:2201.08239}, 2022.
+
+\bibitem{baltrusaitis2019}
+T. Baltrusaitis, C. Ahuja, and L. P. Morency, ``Multimodal machine learning: A survey and taxonomy,'' \textit{IEEE Transactions on Pattern Analysis and Machine Intelligence}, vol. 41, no. 2, pp. 423--443, 2019.
+
+\bibitem{lu2019}
+J. Lu, D. Batra, D. Parikh, and S. Lee, ``ViLBERT: Pretraining task-agnostic visiolinguistic representations for vision-and-language tasks,'' in \textit{Advances in Neural Information Processing Systems}, vol. 32, 2019.
+
+\bibitem{w3c2023}
+W3C, ``Web Speech API Specification,'' 2023. [Online]. Available: \url{https://w3c.github.io/speech-api/}
+
+\bibitem{pradhan2018}
+A. Pradhan, K. Mehta, and L. Findlater, ``Accessibility came by accident: Use of voice-controlled intelligent personal assistants by people with disabilities,'' in \textit{CHI Conference Proceedings}, 2018.
+
+\bibitem{black2020}
+J. S. Black and P. van Esch, ``AI-enabled recruiting: What is it and how should a manager use it?'' \textit{Business Horizons}, vol. 63, no. 2, pp. 215--226, 2020.
+
+\end{thebibliography}
+
+\end{document}
+\documentclass[conference]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{cite}
+
+\title{Literature Review on AI Chatbots for Career Assistance: From Traditional Systems to Multimodal ATS-Aware Platforms}
+
+\author{\IEEEauthorblockN{Amruta Anil Bargal}
+\IEEEauthorblockA{\textit{Department of Data Science Engineering} \\
+\textit{Dr. Vithalrao Vikhe Patil College Of Engineering}\\
+Ahmednagar, India}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This review paper examines the research landscape of AI chatbot systems in the context of career assistance and resume optimization. Unlike a final implementation paper, this work does not report system construction results. Instead, it analyzes prior literature across four streams: rule-based chatbots, large language model (LLM) based conversational systems, multimodal assistant frameworks, and ATS-oriented resume tools. The review highlights practical strengths and recurring limitations, including tool fragmentation, weak context continuity, and insufficient integration between conversational guidance and resume refinement. A gap-driven framework is then proposed to guide future development of an integrated chatbot system. The paper concludes with review-derived design recommendations and an evaluation roadmap for future empirical studies.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Review Paper, AI Chatbot, Literature Survey, Multimodal Interaction, Resume Builder, ATS Optimization
+\end{IEEEkeywords}
+
+\section{Introduction}
+\subsection{Context}
+Chatbots have evolved from scripted assistants to neural conversational systems capable of contextual response generation \cite{adamopoulou2020,weizenbaum1966,vaswani2017}. At the same time, recruitment and career support are increasingly influenced by automation, especially through Applicant Tracking Systems (ATS) \cite{black2020}. This has created demand for AI tools that can support both interaction and document quality improvement.
+
+\subsection{Why a Review Paper Is Necessary}
+Before building or presenting a final system, it is academically important to understand what previous systems achieved, where they failed, and what gaps remain. Therefore, this document is intentionally written as a \textbf{review paper} with comparative analysis, not as an implementation or performance report.
+
+\subsection{Review Questions}
+The review is guided by the following questions:
+\begin{enumerate}
+    \item What was available in older chatbot approaches?
+    \item What advantages and disadvantages are observed in current systems?
+    \item Why is an integrated chatbot-plus-resume platform needed?
+    \item Which limitations can be realistically overcome in the proposed project direction?
+\end{enumerate}
+
+\section{Method of Review}
+\subsection{Scope}
+The survey focuses on studies related to: (1) chatbot architecture, (2) multimodal understanding, (3) voice interaction in web systems, and (4) ATS-aware resume generation. Both foundational and recent references are used to maintain historical continuity and current relevance \cite{thoppilan2022,baltrusaitis2019,resumai2024,atsllm2024,resumebuilder2024}.
+
+\subsection{Selection Criteria}
+Sources are included when they:
+\begin{itemize}
+    \item Explain design or behavior of conversational systems.
+    \item Address document or multimodal processing capabilities.
+    \item Discuss resume quality, recruitment automation, or ATS compatibility.
+    \item Report practical constraints relevant to real users.
+\end{itemize}
+
+\subsection{Comparison Dimensions}
+All approaches are compared using five dimensions:
+\begin{itemize}
+    \item conversation quality,
+    \item modality support,
+    \item resume workflow integration,
+    \item ATS orientation,
+    \item deployment practicality.
+\end{itemize}
+
+\section{Review of Existing Approaches}
+\subsection{Traditional Rule-Based Systems (Old Generation)}
+Older chatbots relied on pattern matching and fixed response trees.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item Deterministic behavior and predictable responses.
+    \item Low computational requirement.
+    \item Easy deployment for constrained FAQ tasks.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item Poor handling of complex natural language.
+    \item No deep context retention across conversation turns.
+    \item Minimal support for career-specific personalized guidance.
+\end{itemize}
+
+\subsection{LLM-Driven Conversational Systems}
+Modern LLM chatbots can support richer dialogue and better language generation \cite{thoppilan2022}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item High-quality textual generation for summaries and drafting.
+    \item Better contextual reasoning than static bots.
+    \item Useful for iterative writing refinement.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item Many deployments remain text-centric in practice.
+    \item Resume formatting and ATS compliance are often external tasks.
+    \item Context from uploaded files is inconsistently reused.
+\end{itemize}
+
+\subsection{Multimodal Assistant Systems}
+Research shows multimodal AI can improve contextual understanding by combining text with visual or document inputs \cite{baltrusaitis2019,lu2019}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item Better interpretation of user-provided evidence.
+    \item More realistic support for document-heavy workflows.
+    \item Potential for richer assistance beyond plain text.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item Increased implementation complexity.
+    \item Performance variation across file types and browser stacks.
+    \item Limited standardized evaluation in career-assistance settings.
+\end{itemize}
+
+\subsection{Standalone Resume Builders and ATS Tools}
+Dedicated resume platforms provide templates and ATS checks but often operate without conversational support.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item Structured data collection and polished templates.
+    \item Practical ATS keyword suggestions.
+    \item Export-ready outputs for job applications.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item Limited adaptive guidance during user revision cycles.
+    \item Weak integration with supporting documents and portfolio files.
+    \item Fragmented workflow when used alongside separate chatbot tools.
+\end{itemize}
+
+\subsection{Voice Interaction in Web-Based Assistants}
+Voice APIs increase accessibility and interaction flexibility \cite{w3c2023,pradhan2018}.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item Helpful for fast input and accessibility use cases.
+    \item Supports natural interaction for brainstorming content.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item Recognition accuracy depends on environment and language settings.
+    \item Often limited to input transcription, not full workflow intelligence.
+\end{itemize}
+
+\section{Comparative Synthesis}
+\begin{table*}[ht]
+\centering
+\caption{Advantages and disadvantages across prior approaches}
+\begin{tabular}{|p{3.5cm}|p{4.2cm}|p{4.2cm}|p{3.9cm}|}
+\hline
+\textbf{Category} & \textbf{Advantages} & \textbf{Disadvantages} & \textbf{Main Limitation} \\
+\hline
+Rule-based chatbots & Stable, fast, low-cost behavior & Rigid and non-adaptive conversation & Not suitable for complex resume guidance \\
+\hline
+LLM text chatbots & Strong language generation and context quality & Often weak multimodal and export integration & End-to-end workflow remains incomplete \\
+\hline
+Multimodal assistants & Better understanding of varied user evidence & Higher complexity and inconsistent evaluations & Hard to operationalize in career-focused tasks \\
+\hline
+Standalone ATS/resume tools & Structured templates and practical ATS checks & Limited conversation and personalization & Fragmented from dialog-based assistance \\
+\hline
+Voice-enabled interfaces & Better accessibility and faster idea capture & Accuracy and browser dependency issues & Usually not deeply integrated into resume lifecycle \\
+\hline
+\end{tabular}
+\end{table*}
+
+\section{Research Gaps}
+From the above review, the following gaps are identified:
+\begin{enumerate}
+    \item \textbf{Integration Gap:} AI chat, document analysis, and ATS optimization are rarely unified.
+    \item \textbf{Continuity Gap:} Context from prior conversation and uploaded files is not persistently leveraged.
+    \item \textbf{Actionability Gap:} Existing insights do not always convert into resume edits users can apply directly.
+    \item \textbf{Validation Gap:} Many systems report features but limited comparative user-focused evaluation.
+    \item \textbf{Usability Gap:} Save/load/export/search workflows are often secondary in research prototypes.
+\end{enumerate}
+
+\section{Why This Project Direction Is Important}
+The reviewed literature indicates that users currently need to switch between multiple tools to complete one career task: discuss profile, analyze documents, draft resume, and optimize for ATS. This process is inefficient and causes context loss. A unified assistant can reduce this friction and improve practical usefulness for students and job seekers.
+
+\section{How Limitations Can Be Overcome}
+Based on review findings, the proposed direction can overcome prior limitations through:
+\begin{itemize}
+    \item \textbf{Unified interaction layer:} conversation, file understanding, and resume support in one interface.
+    \item \textbf{Context-preserving pipeline:} chat memory + uploaded document signals used together.
+    \item \textbf{Iterative ATS refinement loop:} recommendation, edit, and re-check cycle.
+    \item \textbf{Utility-focused design:} strong save/load/search/export support for day-to-day use.
+\end{itemize}
+
+\section{Review-Based Recommendations for Future Final Paper}
+The final implementation paper should evaluate:
+\begin{itemize}
+    \item improvement in resume completeness and relevance,
+    \item ATS keyword alignment before and after AI suggestions,
+    \item user effort reduction in end-to-end workflow,
+    \item robustness across file types and browser environments,
+    \item user satisfaction with conversational guidance quality.
+\end{itemize}
+
+\section{Conclusion}
+This document provides a full review-paper perspective on AI chatbots for career assistance. It explains what older systems offered, compares modern alternatives, and clearly states their advantages and disadvantages. The study also justifies why an integrated project is needed and identifies practical ways to overcome existing limitations. These findings establish an academic foundation that is separate from and complementary to the final implementation paper.
+
+\section*{References}
+\begin{thebibliography}{99}
+
+\bibitem{adamopoulou2020}
+E. Adamopoulou and L. Moussiades, ``Chatbots: History, technology, and applications,'' \textit{Machine Learning with Applications}, vol. 2, p. 100006, 2020.
+
+\bibitem{weizenbaum1966}
+J. Weizenbaum, ``ELIZA---a computer program for the study of natural language communication between man and machine,'' \textit{Communications of the ACM}, vol. 9, no. 1, pp. 36--45, 1966.
+
+\bibitem{vaswani2017}
+A. Vaswani et al., ``Attention is all you need,'' in \textit{Advances in Neural Information Processing Systems}, vol. 30, pp. 5998--6008, 2017.
+
+\bibitem{thoppilan2022}
+R. Thoppilan et al., ``LaMDA: Language models for dialog applications,'' \textit{arXiv preprint arXiv:2201.08239}, 2022.
+
+\bibitem{baltrusaitis2019}
+T. Baltrusaitis, C. Ahuja, and L. P. Morency, ``Multimodal machine learning: A survey and taxonomy,'' \textit{IEEE Transactions on Pattern Analysis and Machine Intelligence}, vol. 41, no. 2, pp. 423--443, 2019.
+
+\bibitem{lu2019}
+J. Lu, D. Batra, D. Parikh, and S. Lee, ``ViLBERT: Pretraining task-agnostic visiolinguistic representations for vision-and-language tasks,'' in \textit{Advances in Neural Information Processing Systems}, vol. 32, 2019.
+
+\bibitem{w3c2023}
+W3C, ``Web Speech API Specification,'' 2023. [Online]. Available: \url{https://w3c.github.io/speech-api/}
+
+\bibitem{pradhan2018}
+A. Pradhan, K. Mehta, and L. Findlater, ``Accessibility came by accident: Use of voice-controlled intelligent personal assistants by people with disabilities,'' in \textit{Proceedings of CHI}, 2018.
+
+\bibitem{black2020}
+J. S. Black and P. van Esch, ``AI-enabled recruiting: What is it and how should a manager use it?'' \textit{Business Horizons}, vol. 63, no. 2, pp. 215--226, 2020.
+
+\bibitem{resumai2024}
+M. Khan et al., ``ResumAI: Revolutionizing automated resume analysis and recommendation with multi-model intelligence,'' \textit{IEEE Conference Publication}, 2024.
+
+\bibitem{atsllm2024}
+A. Khadilkar, ``Optimizing resume authenticity and ATS compatibility with LLM feedback integration,'' \textit{Cal Poly CENG SURP}, 2024.
+
+\bibitem{resumebuilder2024}
+R. Sharma et al., ``AI-powered resume builder: Enhancing job applications with artificial intelligence,'' \textit{IEEE Conference Publication}, 2024.
+
+\end{thebibliography}
+
+\end{document}
+\documentclass[conference]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{listings}
 \usepackage{xcolor}
@@ -91,6 +2462,65 @@ Web-based voice recognition has become increasingly accessible through browser A
 \subsection{Resume Generation and ATS Optimization}
 
 Automated resume generation systems have gained prominence with the increasing use of Applicant Tracking Systems (ATS) \cite{black2020}. Recent work on AI-driven resume analysis and ATS feedback loops suggests growing academic attention to resume parsing and optimization \cite{resumai2024,atsllm2024,resumebuilder2024}. However, many existing systems are implemented as standalone resume builders or ATS scoring tools, offering limited conversational support and weak integration with broader career assistance workflows. This study addresses that limitation by embedding ATS-aware resume generation inside a multimodal chatbot, enabling iterative, dialog-based refinement rather than one-off, form-based generation.
+
+\subsection{Comparative Review of Existing Approaches}
+
+Before defining the proposed system, it is important to summarize what older and current approaches offer, where they work well, and where they fail in practical career-assistance use cases.
+
+\subsubsection{Rule-Based or Menu-Driven Chatbots}
+\textbf{Advantages:}
+\begin{itemize}
+    \item Fast responses and low computational cost
+    \item Predictable output for predefined intents
+    \item Easy deployment in limited domains
+\end{itemize}
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item Cannot handle open-ended natural language effectively
+    \item Weak context retention in multi-turn conversations
+    \item No meaningful support for document-centric workflows
+\end{itemize}
+
+\subsubsection{Text-Only LLM Chatbots}
+\textbf{Advantages:}
+\begin{itemize}
+    \item Strong language understanding and generation quality
+    \item Better contextual conversation than rule-based bots
+    \item Useful for generic Q\&A and writing assistance
+\end{itemize}
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item Often limited integration with image/video/document pipelines
+    \item Minimal built-in support for resume lifecycle tasks
+    \item Workflow fragmentation when users switch between multiple tools
+\end{itemize}
+
+\subsubsection{Standalone Resume Builders and ATS Checkers}
+\textbf{Advantages:}
+\begin{itemize}
+    \item Structured templates and form-driven data entry
+    \item Focused ATS keyword suggestions
+    \item Practical output formats for job applications
+\end{itemize}
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item Limited conversational guidance and personalization
+    \item Weak support for multimodal user evidence (documents, media)
+    \item Usually isolated from broader career coaching workflows
+\end{itemize}
+
+\subsubsection{Identified Gap and Need for the Proposed Project}
+The literature and currently available tools show a recurring gap: users need to combine multiple disconnected systems to complete one end-to-end task (discussion, document understanding, resume drafting, and ATS optimization). This increases effort, introduces context loss, and reduces iteration quality.
+
+\subsubsection{How the Proposed System Overcomes These Gaps}
+The present project addresses the above limitations through:
+\begin{itemize}
+    \item \textbf{Unified interface:} Chat assistance, multimodal processing, and resume building are available in one platform.
+    \item \textbf{Context continuity:} Conversation memory and uploaded content are used together during iterative refinement.
+    \item \textbf{ATS-aware generation:} Resume content is created and improved with optimization-oriented guidance.
+    \item \textbf{Practical usability:} Export, save/load, search, and voice input reduce user friction in real-world use.
+\end{itemize}
+These points establish the research motivation for developing an integrated multimodal chatbot instead of relying on single-purpose tools.
 
 \section{System Architecture and Existing Features}
 

@@ -1,0 +1,212 @@
+\documentclass[conference]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{cite}
+
+\title{A Comprehensive Review of Multimodal AI Chatbots for Resume Building and ATS Optimization}
+
+\author{\IEEEauthorblockN{Amruta Anil Bargal}
+\IEEEauthorblockA{\textit{Department of Data Science Engineering} \\
+\textit{Dr. Vithalrao Vikhe Patil College Of Engineering}\\
+Ahmednagar, India}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper is a review paper and not an implementation report. It surveys the evolution of chatbot systems from rule-based assistants to large language model (LLM) systems, with specific focus on multimodal interaction, voice-enabled interfaces, resume generation, and Applicant Tracking System (ATS) optimization. The review compares existing approaches by strengths, limitations, and practical suitability for career-assistance workflows. A structured gap analysis shows that current tools are frequently fragmented: conversational systems, document understanding modules, and ATS optimization engines are often developed in isolation. Based on these findings, the paper formulates research gaps and proposes a conceptual framework for an integrated multimodal chatbot platform. The review also defines evaluation criteria for future final implementation work.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Review Paper, AI Chatbot, Multimodal Systems, Resume Builder, ATS Optimization, Literature Review
+\end{IEEEkeywords}
+
+\section{Introduction}
+\subsection{Background}
+Conversational AI has shifted from script-driven systems to deep learning based assistants that can handle long-form natural language interaction \cite{adamopoulou2020,weizenbaum1966,vaswani2017}. In parallel, multimodal models have expanded chatbot usability by supporting text, image, audio, and document understanding \cite{baltrusaitis2019,lu2019}. Career-support applications, especially resume building and ATS-aware writing, are now a growing use case for AI-driven systems \cite{black2020,resumai2024,resumebuilder2024}.
+
+\subsection{Need for a Separate Review Paper}
+Final papers generally focus on implementation, experiments, and reported outcomes. In contrast, this review paper focuses on prior work, comparative analysis, limitations of existing methods, and research gaps. Therefore, this document is intentionally different from the final project paper in objective, structure, and contribution type.
+
+\subsection{Objectives}
+The objectives of this review paper are:
+\begin{enumerate}
+    \item To analyze old and current chatbot approaches for career-assistance use cases.
+    \item To present advantages and disadvantages of major solution categories.
+    \item To identify research and practical gaps in currently available systems.
+    \item To define how a proposed integrated project can overcome these gaps.
+    \item To establish evaluation criteria for future final-paper validation.
+\end{enumerate}
+
+\section{Review Methodology}
+\subsection{Search and Selection Strategy}
+The review considers literature and technical reports on four themes: chatbot evolution, multimodal AI, voice-based interaction, and ATS-oriented resume systems. Priority is given to peer-reviewed surveys, foundational model papers, web standards, and recent career-AI studies \cite{thoppilan2022,w3c2023,atsllm2024}.
+
+\subsection{Inclusion Criteria}
+Studies are included when they:
+\begin{itemize}
+    \item Discuss architectural or functional behavior of chatbot systems.
+    \item Provide evidence on multimodal or document-centric processing.
+    \item Address resume writing, ATS compatibility, or job-application support.
+    \item Report strengths/limitations relevant to practical deployment.
+\end{itemize}
+
+\subsection{Analysis Dimensions}
+Each approach is analyzed using five dimensions: (1) interaction quality, (2) modality coverage, (3) workflow integration, (4) ATS relevance, and (5) deployment practicality.
+
+\section{Comparative Literature Review}
+\subsection{Rule-Based and Menu-Driven Systems (Old Approaches)}
+\textbf{Advantages:}
+\begin{itemize}
+    \item Low computational cost and predictable response behavior.
+    \item Easy to deploy for narrow and repetitive tasks.
+    \item Good reliability in fixed-domain FAQs.
+\end{itemize}
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item Poor handling of open-ended user queries.
+    \item Weak context retention in multi-turn conversations.
+    \item Minimal adaptability for resume personalization.
+\end{itemize}
+
+\subsection{Text-Only LLM Chatbots}
+\textbf{Advantages:}
+\begin{itemize}
+    \item Strong natural language understanding and generation.
+    \item Better personalization than purely rule-based systems.
+    \item Effective for writing assistance and iterative drafting.
+\end{itemize}
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item Limited native handling of non-text inputs in many deployments.
+    \item Often disconnected from resume formatting and export pipelines.
+    \item ATS optimization is usually generic and not workflow-aware.
+\end{itemize}
+
+\subsection{Standalone Resume Builders and ATS Scorers}
+\textbf{Advantages:}
+\begin{itemize}
+    \item Strong form-based structure and template consistency.
+    \item Useful keyword suggestions for ATS compatibility.
+    \item Practical output formats for job submission.
+\end{itemize}
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item Weak conversational guidance for content refinement.
+    \item Limited support for multimodal evidence (PDFs, portfolios, media).
+    \item Users must switch tools, causing context loss and time overhead.
+\end{itemize}
+
+\subsection{Voice-Enabled Conversational Interfaces}
+\textbf{Advantages:}
+\begin{itemize}
+    \item Improves accessibility and hands-free interaction \cite{pradhan2018}.
+    \item Faster input for brainstorming and draft creation.
+\end{itemize}
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item Recognition accuracy varies by noise, accent, and browser stack.
+    \item Most systems treat voice as input only, not full workflow support.
+\end{itemize}
+
+\section{Synthesis: Advantages and Disadvantages Across Categories}
+\begin{table*}[ht]
+\centering
+\caption{Comparative synthesis of existing approaches}
+\begin{tabular}{|p{3.4cm}|p{4.0cm}|p{4.0cm}|p{4.3cm}|}
+\hline
+\textbf{Approach} & \textbf{Major Advantages} & \textbf{Major Disadvantages} & \textbf{Observed Gap} \\
+\hline
+Rule-based chatbot & Fast, low-cost, predictable output & Rigid logic, poor open-domain dialogue & Not suitable for dynamic resume guidance \\
+\hline
+Text-only LLM chatbot & High language quality, adaptive writing support & Weak multimodal and export integration & Cannot complete end-to-end job workflow alone \\
+\hline
+Standalone resume builder & Strong templates and ATS keyword hints & Limited conversation and personalization depth & Fragmented from AI dialogue context \\
+\hline
+Voice-enabled assistant & Better accessibility and quick ideation & Accuracy and browser dependency issues & Rarely integrated with ATS-aware resume loops \\
+\hline
+\end{tabular}
+\end{table*}
+
+\section{Research Gaps Identified}
+The review identifies the following key gaps:
+\begin{enumerate}
+    \item \textbf{Fragmentation Gap:} Conversation, file understanding, and resume optimization are usually separated across tools.
+    \item \textbf{Context Continuity Gap:} Insights from prior chat and uploaded documents are not consistently reused.
+    \item \textbf{Multimodal-to-Resume Gap:} Document/media understanding rarely translates into actionable resume updates.
+    \item \textbf{ATS Feedback Gap:} Many systems provide static keyword checks, not iterative dialogue-driven optimization.
+    \item \textbf{Usability Gap:} Export, persistence, and search features are inconsistently integrated in academic prototypes.
+\end{enumerate}
+
+\section{Why This Project Is Needed}
+Based on the identified gaps, there is clear need for an integrated system where users can discuss goals, upload career documents, generate and refine resume content, and receive ATS-aware improvements within one workflow. Such a system can reduce tool switching, preserve context, and improve practical usability for students and job seekers.
+
+\section{How the Proposed Project Can Overcome Existing Limitations}
+The proposed project is expected to address the above limitations through:
+\begin{itemize}
+    \item \textbf{Single unified platform:} Chat, multimodal processing, and resume writing in one interface.
+    \item \textbf{Context-preserving pipeline:} Chat history and uploaded evidence used jointly during drafting.
+    \item \textbf{Iterative ATS optimization:} Continuous improvement through conversational feedback loops.
+    \item \textbf{User-centered utilities:} Save/load, export, search, and voice input for practical adoption.
+\end{itemize}
+
+\section{Evaluation Plan for Future Final Paper}
+To maintain clear separation from implementation work, this review defines only the evaluation plan:
+\begin{itemize}
+    \item \textbf{Functional metrics:} modality support coverage, export reliability, session persistence.
+    \item \textbf{Quality metrics:} clarity and relevance of generated resume sections.
+    \item \textbf{ATS-oriented metrics:} keyword alignment and section completeness scores.
+    \item \textbf{Usability metrics:} task completion time, user effort, and satisfaction feedback.
+    \item \textbf{Robustness metrics:} error handling across browsers and varied input types.
+\end{itemize}
+
+\section{Conclusion}
+This paper provides a full review of old and recent approaches relevant to multimodal chatbot-assisted resume building and ATS optimization. It clearly distinguishes review findings from final implementation reporting. The comparative analysis shows that existing systems are capable but fragmented, and that major opportunities lie in integration, context continuity, and iterative ATS-aware guidance. The identified research gaps and evaluation plan provide a strong academic foundation for the subsequent final paper.
+
+\section*{References}
+\begin{thebibliography}{99}
+
+\bibitem{adamopoulou2020}
+E. Adamopoulou and L. Moussiades, ``Chatbots: History, technology, and applications,'' \textit{Machine Learning with Applications}, vol. 2, p. 100006, 2020.
+
+\bibitem{weizenbaum1966}
+J. Weizenbaum, ``ELIZA---a computer program for the study of natural language communication between man and machine,'' \textit{Communications of the ACM}, vol. 9, no. 1, pp. 36--45, 1966.
+
+\bibitem{vaswani2017}
+A. Vaswani et al., ``Attention is all you need,'' in \textit{Advances in Neural Information Processing Systems}, vol. 30, pp. 5998--6008, 2017.
+
+\bibitem{thoppilan2022}
+R. Thoppilan et al., ``LaMDA: Language models for dialog applications,'' \textit{arXiv:2201.08239}, 2022.
+
+\bibitem{baltrusaitis2019}
+T. Baltrusaitis, C. Ahuja, and L. P. Morency, ``Multimodal machine learning: A survey and taxonomy,'' \textit{IEEE TPAMI}, vol. 41, no. 2, pp. 423--443, 2019.
+
+\bibitem{lu2019}
+J. Lu, D. Batra, D. Parikh, and S. Lee, ``ViLBERT: Pretraining task-agnostic visiolinguistic representations for vision-and-language tasks,'' in \textit{NeurIPS}, vol. 32, 2019.
+
+\bibitem{w3c2023}
+W3C, ``Web Speech API Specification,'' 2023. [Online]. Available: \url{https://w3c.github.io/speech-api/}
+
+\bibitem{pradhan2018}
+A. Pradhan, K. Mehta, and L. Findlater, ``Accessibility came by accident: Use of voice-controlled intelligent personal assistants by people with disabilities,'' in \textit{CHI}, 2018.
+
+\bibitem{black2020}
+J. S. Black and P. van Esch, ``AI-enabled recruiting: What is it and how should a manager use it?'' \textit{Business Horizons}, vol. 63, no. 2, pp. 215--226, 2020.
+
+\bibitem{resumai2024}
+M. Khan et al., ``ResumAI: Revolutionizing automated resume analysis and recommendation with multi-model intelligence,'' \textit{IEEE Conference Publication}, 2024.
+
+\bibitem{atsllm2024}
+A. Khadilkar, ``Optimizing resume authenticity and ATS compatibility with LLM feedback integration,'' \textit{Cal Poly CENG SURP}, 2024.
+
+\bibitem{resumebuilder2024}
+R. Sharma et al., ``AI-powered resume builder: Enhancing job applications with artificial intelligence,'' \textit{IEEE Conference Publication}, 2024.
+
+\end{thebibliography}
+
+\end{document}
